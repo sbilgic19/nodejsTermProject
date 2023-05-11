@@ -4,6 +4,7 @@
     <meta charset="utf-8">
     <link rel="stylesheet" href="style.css">
     <title>Login Page</title>
+    <script type="text/javascript" src="middle.js"></script>
     <style>
       .center {
         text-align: center;
@@ -20,11 +21,14 @@
         <label for="password">Password:</label>
         <input type="password" id="password" name="password"><br><br>
         
-        <input type="submit" value="Login"><br><br>
+        <button onclick="applyAuthentication(event)">Login</button><br><br>
+
+        <label for="readonly-text"></label>
+        <input type="text" id="readonly-text" name="readonly-text" readonly>
+        
       </form>
       
       <p>Not a member yet? <a href="signup.html">Create Account</a></p>
-      <p><a href="forgot-password.html">Forgot Password?</a></p>
     </div>
   </body>
 </html>
