@@ -5,14 +5,11 @@ const mysql = require('mysql');
 
 const app = express();
 
-// Enable CORS
 app.use(cors());
 
-// Configure body-parser to handle POST requests
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
-// Create a MySQL connection pool
 const pool = mysql.createPool({
   host: 'localhost',
   user: 'root',
@@ -27,15 +24,39 @@ function authenticateUser(email, password, callback){
       console.log(err);
     }
     else if (result.length == 0) {
-        callback("The user is not registered!");
+        callback("Invalid user!");
     }
     else if (result[0].Email = email && result[0].Password == password) {
-        callback("The user is authenticated!");
+        callback("Authenticated!");
     }
     else if (result[0].Email = email && result[0].Password != password) {
-        callback("The password is not valid!");
+        callback("Invalid password!");
     }
   })
+}
+
+function registerUser(name, surname, age, email, password, callback) {
+  const sql = `SELECT COUNT (*) AS Result FROM User WHERE email = "${email}"`;
+  pool.query(sql, (err, result) => {
+    if (err) {
+      console.log(err);
+    }
+    else if (result[0].Result == 0) {
+      const sql = `INSERT INTO User Values ("${email}", "${password}", "${name}"\
+      ,"${surname}", ${age})`;
+      pool.query(sql, (err, result) => {
+        if (err) {
+          console.log(err);
+        }
+        else {
+          callback("Registered succesfully!");
+        }
+      });
+    }
+    else {
+      callback("The email already exists!")
+    }
+  });
 }
 
 app.get('/authenticateUser', (req, res) => {
@@ -44,6 +65,17 @@ app.get('/authenticateUser', (req, res) => {
     authenticateUser(email, password , (result) => {
         res.send(result);
     });
+});
+
+app.post('/registerUser', (req, res) => {
+  var name = req.body.name;
+  var surname = req.body.surname;
+  var age = req.body.age;
+  var email = req.body.email;
+  var password = req.body.password;
+  registerUser(name, surname, age, email, password , (result) => {
+      res.send(result);
+  });
 });
 
 app.listen('3000', () => {
