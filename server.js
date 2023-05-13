@@ -14,11 +14,10 @@ app.use(bodyParser.json());
 // Create a MySQL connection pool
 
 const pool = mysql.createPool({
-  host: "localhost",
-  // change below to use your local db
-  user: "root",
-  password: "s3rk4ns3rk4n",
-  database: "projectdb",
+  host: 'localhost',
+  user: 'root',
+  password: '***100altı',
+  database: 'teamnode',
 });
 
 //test connection
