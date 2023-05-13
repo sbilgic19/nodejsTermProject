@@ -54,12 +54,3 @@ function applyRegistration(event) {
     });
 }
 
-async function submitSearchRequest(filters, callback) {
-    var url = new URL("http://localhost:3000/retrieveFilms");
-
-    Object.keys(filters).forEach(key => url.searchParams.append(key, filters[key]));
-
-    const response = await fetch(url);
-    const data = await response.json();
-    callback(data);
-}
