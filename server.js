@@ -3,7 +3,7 @@ const bodyParser = require("body-parser");
 const cors = require("cors");
 const mysql = require("mysql");
 
-
+const app = express();
 // Enable CORS
 app.use(cors());
 const PORT = 3000;
@@ -11,25 +11,13 @@ const PORT = 3000;
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
-// Create a MySQL connection pool
-const express = require('express');
-const bodyParser = require('body-parser');
-const cors = require('cors');
-const mysql = require('mysql');
-
-const app = express();
-
-app.use(cors());
-
-app.use(bodyParser.urlencoded({ extended: true }));
-app.use(bodyParser.json());
 
 
 const pool = mysql.createPool({
   host: 'localhost',
   user: 'root',
-  password: '***100altı',
-  database: 'teamnode'
+  password: 's3rk4ns3rk4n',
+  database: 'projectdb'
 });
 
 
