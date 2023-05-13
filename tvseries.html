@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>IMDB - TV Series</title>
+	<link rel="stylesheet" type="text/css" href="style.css">
+</head>
+<body>
+	<header>
+		<div class="logo">
+			<h1>IMDB</h1>
+		</div>
+		<nav>
+			<ul>
+				<li><a href="movies.html">MOVIES</a></li>
+				<li><a href="tvseries.html">TV SERIES</a></li>
+				<li><a href="celebs.html">CELEBS</a></li>
+			</ul>
+		</nav>
+		<div class="dashboard-link">
+			<a href="dashboard.html">DASHBOARD</a>
+		</div>
+	</header>
+
+	<section id="filters">
+		<div>
+			<label for="genre-filter">Genre:</label>
+			<select id="genre-filter">
+				<option value="">All</option>
+				<option value="sci-fi">Sci-Fi</option>
+				<option value="drama">Drama</option>
+				<option value="comedy">Comedy</option>
+				<option value="action">Action</option>
+			</select>
+		</div>
+		<div>
+			<label for="rating-filter">Rating:</label>
+			<select id="rating-filter">
+				<option value="">All</option>
+				<option value="9-10">9.0-10</option>
+				<option value="8-9">8.0-9.0</option>
+				<option value="7-8">7.0-8.0</option>
+				<option value="1-2">1.0-2.0</option>
+			</select>
+		</div>
+	</section>
+
+	<section id="tvseries-list">
+		<ul>
+			<li>
+				<span class="tvseries-index">1.</span>
+				<span class="tvseries-name">Breaking Bad</span>
+				<span class="tvseries-rating">9.5</span>
+			</li>
+			<li>
+				<span class="tvseries-index">2.</span>
+				<span class="tvseries-name">Game of Thrones</span>
+				<span class="tvseries-rating">9.3</span>
+			</li>
+			<li>
+				<span class="tvseries-index">3.</span>
+				<span class="tvseries-name">Stranger Things</span>
+				<span class="tvseries-rating">8.8</span>
+			</li>
+			<li>
+				<span class="tvseries-index">4.</span>
+				<span class="tvseries-name">Friends</span>
+				<span class="tvseries-rating">8.9</span>
+			</li>
+			<li>
+				<span class="tvseries-index">5.</span>
+				<span class="tvseries-name">The Office</span>
+				<span class="tvseries-rating">8.9</span>
+			</li>
+		</ul>
+	</section>
+
+</body>
+</html>

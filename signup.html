@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <link rel="stylesheet" href="style.css">
+  <title>Create Account</title>
+  <script type="text/javascript" src="middle.js"></script>
+  <style>
+    .center {
+      text-align: center;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="center">
+    <h1>Create Account</h1>
+    <!-- HTML code for the sign-up form -->
+     <form id="signup-form" onsubmit="applyRegistration(event)">
+        <label for="name">Name:</label>
+        <input type="text" id="name" name="name" required><br><br>
+
+        <label for="surname">Surname:</label>
+        <input type="text" id="surname" name="surname" required><br><br>
+
+        <label for="age">Age:</label>
+        <input type="number" id="age" name="age" required><br><br>
+
+        <label for="email">Email:</label>
+        <input type="email" id="email" name="email" required><br><br>
+
+        <label for="password">Password:</label>
+        <input type="password" id="password" name="password" required><br><br>
+
+        <input type="submit" value="Sign Up"><br>
+
+      </form>
+
+    <p>Already have an account? <a href="login.html">Login</a></p>
+  </div>
+</body>
+
+</html>

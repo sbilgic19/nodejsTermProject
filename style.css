@@ -1,0 +1,339 @@
+/* Body styles */
+body {
+  background-color: #141414;
+  color: #ffffff;
+  font-family: Arial, sans-serif;
+  font-size: 16px;
+  margin: 0;
+}
+
+/* Page container styles */
+.container {
+  margin: 0 auto;
+  max-width: 800px;
+  padding: 20px;
+}
+
+/* Heading styles */
+h1 {
+  font-size: 48px;
+  margin-bottom: 40px;
+}
+
+/* Form styles */
+form {
+  display: flex;
+  flex-direction: column;
+  margin: 0 auto;
+  max-width: 400px;
+}
+
+label {
+  font-size: 18px;
+  margin-bottom: 10px;
+}
+
+input[type="email"],
+input[type="password"],
+input[type="text"],
+input[type="number"] {
+  background-color: #212121;
+  border: none;
+  border-radius: 4px;
+  color: #ffffff;
+  font-size: 18px;
+  margin-bottom: 20px;
+  padding: 10px;
+  width: 100%;
+}
+
+input[type="submit"],
+a.button {
+  background-color: #f5c518;
+  border: none;
+  border-radius: 4px;
+  color: #000000;
+  cursor: pointer;
+  font-size: 24px;
+  font-weight: bold;
+  margin-top: 20px;
+  padding: 10px;
+  text-align: center;
+  text-decoration: none;
+  transition: background-color 0.2s ease-in-out;
+  width: 100%;
+}
+
+input[type="submit"]:hover,
+a.button:hover {
+  background-color: #f0b300;
+}
+
+/* Link styles */
+a {
+  color: #ffffff;
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+/* Button styles */
+.button {
+  display: inline-block;
+  text-align: center;
+  width: 150px;
+}
+
+/* Reset default margins and paddings */
+* {
+  margin: 0;
+  padding: 0;
+}
+
+/* Header styles */
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px;
+  background-color: #333;
+  color: #fff;
+}
+
+.logo h1 {
+  font-size: 24px;
+}
+
+nav ul {
+  list-style: none;
+}
+
+nav ul li {
+  display: inline-block;
+  margin-right: 10px;
+}
+
+nav ul li a {
+  color: #fff;
+  text-decoration: none;
+}
+
+.dashboard-link a {
+  color: #fff;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+/* Filters section styles */
+#filters {
+  margin: 20px;
+}
+
+#filters div {
+  margin-bottom: 10px;
+}
+
+#filters label {
+  margin-right: 5px;
+}
+
+#filters select {
+  padding: 5px;
+}
+
+/* Celebrity list styles */
+#celeb-list {
+  margin: 20px auto;
+  width: 600px; /* Adjust the width as needed */
+}
+
+#celeb-list ul {
+  list-style-type: none;
+}
+
+#celeb-list li {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.celeb-name {
+  margin-right: 10px;
+}
+
+.celeb-gender {
+  margin-right: 10px;
+  font-weight: bold;
+}
+
+.celeb-age {
+  margin-right: 10px;
+  font-weight: bold;
+}
+
+.celeb-occupation {
+  margin-right: 10px;
+}
+
+.celeb-nationality {
+  font-weight: bold;
+}
+
+/* TV series list styles */
+#tvseries-list {
+  margin: 20px auto;
+  width: 600px; /* Adjust the width as needed */
+}
+
+#tvseries-list ul {
+  list-style-type: none;
+}
+
+#tvseries-list li {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.tvseries-index {
+  display: inline-block;
+  width: 30px;
+  text-align: right;
+}
+
+.tvseries-name {
+  margin-right: 10px;
+}
+
+.tvseries-rating {
+  margin-right: 10px;
+  font-weight: bold;
+}
+
+.tvseries-genre {
+  margin-right: 10px;
+}
+
+.tvseries-seasons {
+  margin-right: 10px;
+  font-weight: bold;
+}
+
+.tvseries-status {
+  font-weight: bold;
+}
+
+/* Common styles */
+.text-center {
+  text-align: center;
+}
+
+/* Movie list styles */
+#movie-list {
+  margin: 20px auto;
+  width: 600px; /* Adjust the width as needed */
+}
+
+#movie-list ul {
+  list-style-type: none;
+}
+
+#movie-list li {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.movie-index {
+  display: inline-block;
+  width: 30px;
+  text-align: right;
+}
+
+.movie-name {
+  margin-right: 10px;
+}
+
+.movie-rating {
+  margin-right: 10px;
+  font-weight: bold;
+}
+
+.movie-genre {
+  margin-right: 10px;
+}
+
+.movie-release-year {
+  margin-right: 10px;
+}
+
+.movie-director {
+  margin-right: 10px;
+}
+
+.movie-actors {
+  font-weight: bold;
+}
+
+/* Body styles */
+body {
+  background-color: #141414;
+  color: #ffffff;
+  font-family: Arial, sans-serif;
+  font-size: 16px;
+  margin: 0;
+}
+
+/* Page container styles */
+.container {
+  margin: 0 auto;
+  max-width: 800px;
+  padding: 20px;
+}
+
+/* Heading styles */
+h1 {
+  font-size: 48px;
+  margin-bottom: 40px;
+}
+
+/* Dashboard styles */
+.dashboard-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+}
+
+.dashboard-item {
+  background-color: #212121;
+  border-radius: 4px;
+  padding: 20px;
+  color: #ffffff;
+  text-align: center;
+}
+
+.dashboard-item h2 {
+  font-size: 24px;
+  margin-bottom: 10px;
+}
+
+.dashboard-item p {
+  font-size: 18px;
+}
+
+.dashboard-item-left {
+  grid-column: 1;
+}
+
+.dashboard-item-middle {
+  grid-column: 2;
+}
+
+.dashboard-item-right {
+  grid-column: 3;
+}

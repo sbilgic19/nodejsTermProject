@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Movies</title>
+    <link rel="stylesheet" type="text/css" href="style.css">
+</head>
+<body>
+    <header>
+        <h1>IMDB</h1>
+        <nav>
+            <ul>
+                <li><a href="movies.html">MOVIES</a></li>
+                <li><a href="tvseries.html">TV SERIES</a></li>
+                <li><a href="celebs.html">CELEBS</a></li>
+            </ul>
+        </nav>
+        <div id="dashboard-link">
+            <a href="dashboard.html">DASHBOARD</a>
+        </div>
+    </header>
+    <section id="filters">
+        <div class="filter-option">
+            <label for="genre-filter">Genre:</label>
+            <select id="genre-filter">
+                <option value="all">All</option>
+                <option value="sci-fi">Sci-Fi</option>
+                <option value="romantic">Romantic</option>
+                <option value="thriller">Thriller</option>
+                <option value="action">Action</option>
+            </select>
+        </div>
+        <div class="filter-option">
+            <label for="rating-filter">Rating:</label>
+            <select id="rating-filter">
+                <option value="all">All</option>
+                <option value="9.0-10">9.0-10</option>
+                <option value="8.0-9.0">8.0-9.0</option>
+                <option value="7.0-8.0">7.0-8.0</option>
+                <option value="1.0-2.0">1.0-2.0</option>
+            </select>
+        </div>
+    </section>
+    <section id="movie-list">
+        <ul id="movie-list-items">
+            <li>
+                <span class="movie-index">1.</span>
+                <span class="movie-name">Movie 1</span>
+                <span class="movie-rating">8.5</span>
+            </li>
+            <li>
+                <span class="movie-index">2.</span>
+                <span class="movie-name">Movie 2</span>
+                <span class="movie-rating">7.9</span>
+            </li>
+            <!-- Add more movie list items as needed -->
+        </ul>
+    </section>
+</body>
+</html>
