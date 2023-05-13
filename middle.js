@@ -44,7 +44,6 @@ function applyAuthentication(event) {
             textArea.value = text;
         }
     });
-    return false;
 }
 
 function applyRegistration(event) {
@@ -53,7 +52,6 @@ function applyRegistration(event) {
     submitRequest02((text) => {
         textArea.value = text;
     });
-    return false;
 }
 
 async function submitSearchRequest(filters, callback) {

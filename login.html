@@ -14,15 +14,18 @@
   <body>
     <div class="center">
       <h1>Login Page</h1>
-      <form id="login-form" onsubmit="applyAuthentication(event)"></form>
-      <form>
+      <form id="login-form" onsubmit="applyAuthentication(event); return false;">
         <label for="email">Email:</label>
         <input type="email" id="email" name="email"><br><br>
         
         <label for="password">Password:</label>
         <input type="password" id="password" name="password"><br><br>
         
-        <input type="submit" value="Login"><br>
+        <input type="submit" value="Login"><br><br>
+
+        <label for="readonly-text"></label>
+        <input type="text" id="readonly-text01" name="readonly-text" readonly>
+
       </form>
       
       <p>Not a member yet? <a href="signup.html">Create Account</a></p>

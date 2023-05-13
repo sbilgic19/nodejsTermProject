@@ -11,15 +11,12 @@ const PORT = 3000;
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
-
-
 const pool = mysql.createPool({
   host: 'localhost',
   user: 'root',
-  password: 's3rk4ns3rk4n',
+  password: '415gk4cmz',
   database: 'projectdb'
 });
-
 
 //test connection
 app.get("/getAllTvSeries", (req, res) => {
@@ -28,9 +25,6 @@ app.get("/getAllTvSeries", (req, res) => {
     res.send(results);
   });
 });
-
-
-
 
 function authenticateUser(email, password, callback) {
   const sql = `SELECT Email, Password FROM User WHERE email = "${email}"`;
@@ -133,9 +127,6 @@ function retrieveFilms(primaryTitle, genre, duration, averageRating, releaseYear
   });
 }
 
-
-
-
 app.get('/retrieveFilms', (req, res) => {
   var primaryTitle = req.query.primaryTitle;
   var releaseYear = req.query.releaseYear;
@@ -147,8 +138,6 @@ app.get('/retrieveFilms', (req, res) => {
       res.send(result);
     });
 });
-
-
 
 app.get('/authenticateUser', (req, res) => {
   var email = req.query.email;
@@ -172,4 +161,3 @@ app.post('/registerUser', (req, res) => {
 app.listen(PORT, () => {
   console.log("Server started");
 });
-
