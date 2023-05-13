@@ -2,7 +2,7 @@ async function submitRequest01(callback) {
     var email = document.getElementById("email").value;
     var password = document.getElementById("password").value;
     url = `http://localhost:3000/authenticateUser?email=
-${email}&password=${password}`; 
+${email}&password=${password}`;
     const response = await fetch(url);
     const text = await response.text();
     callback(text);
@@ -54,4 +54,14 @@ function applyRegistration(event) {
         textArea.value = text;
     });
     return false;
+}
+
+async function submitSearchRequest(filters, callback) {
+    var url = new URL("http://localhost:3000/retrieveFilms");
+
+    Object.keys(filters).forEach(key => url.searchParams.append(key, filters[key]));
+
+    const response = await fetch(url);
+    const data = await response.json();
+    callback(data);
 }
