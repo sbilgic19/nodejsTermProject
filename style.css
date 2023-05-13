@@ -1,0 +1,88 @@
+/* Body styles */
+body {
+    background-color: #141414;
+    color: #ffffff;
+    font-family: Arial, sans-serif;
+    font-size: 16px;
+    margin: 0;
+  }
+  
+  /* Page container styles */
+  .container {
+    margin: 0 auto;
+    max-width: 800px;
+    padding: 20px;
+  }
+  
+  /* Heading styles */
+  h1 {
+    font-size: 48px;
+    margin-bottom: 40px;
+  }
+  
+  /* Form styles */
+  form {
+    display: flex;
+    flex-direction: column;
+    margin: 0 auto;
+    max-width: 400px;
+  }
+  
+  label {
+    font-size: 18px;
+    margin-bottom: 10px;
+  }
+  
+  input[type="email"],
+  input[type="password"],
+  input[type="text"],
+  input[type="number"] {
+    background-color: #212121;
+    border: none;
+    border-radius: 4px;
+    color: #ffffff;
+    font-size: 18px;
+    margin-bottom: 20px;
+    padding: 10px;
+    width: 100%;
+  }
+  
+  input[type="submit"],
+  a.button {
+    background-color: #f5c518;
+    border: none;
+    border-radius: 4px;
+    color: #000000;
+    cursor: pointer;
+    font-size: 24px;
+    font-weight: bold;
+    margin-top: 20px;
+    padding: 10px;
+    text-align: center;
+    text-decoration: none;
+    transition: background-color 0.2s ease-in-out;
+    width: 100%;
+  }
+  
+  input[type="submit"]:hover,
+  a.button:hover {
+    background-color: #f0b300;
+  }
+  
+  /* Link styles */
+  a {
+    color: #ffffff;
+    text-decoration: none;
+  }
+  
+  a:hover {
+    text-decoration: underline;
+  }
+  
+  /* Button styles */
+  .button {
+    display: inline-block;
+    text-align: center;
+    width: 150px;
+  }
+  
