@@ -129,7 +129,30 @@ function retrieveFilms(primaryTitle, genre, duration, averageRating, releaseYear
 
 app.get('/retrieveFilms', (req, res) => {
   var primaryTitle = req.query.primaryTitle;
-  var releaseYear = req.query.releaseYear;
+  var releaseYear1920 = req.query.releaseYear1920;
+  var releaseYear2040 = req.query.releaseYear2040;
+  var releaseYear4060 = req.query.releaseYear4060;
+  var releaseYear6080 = req.query.releaseYear6080;
+  var releaseYear8000 = req.query.releaseYear8000;
+  var releaseYear0010 = req.query.releaseYear0010;
+  var releaseYear1020 = req.query.releaseYear1020;
+  var releaseYear2020 = req.query.releaseYear2020;
+  var releaseYear1920 = req.query.releaseYear1920;
+
+  var duration0040 = req.query.duration0040;
+  var duration4070 = req.query.duration4070;
+  var duration70150 = req.query.duration70150;
+  var duration150 = req.query.duration150;
+
+  var genreDrama = req.query.genreDrama;
+  var genreHistory = req.query.genreHistory;
+  var genreComedy = req.query.genreComedy;
+  var genreRomance = req.query.genreRomance;
+  var genreFamily = req.query.genreFamily;
+  var genreWestern = req.query.genreWestern;
+  var genreBiography = req.query.genreBiography;
+
+  var releaseYear1920 = req.query.releaseYear1920;
   var averageRating = req.query.averageRating;
   var genre = req.query.genre;
   var duration = req.query.duration;
