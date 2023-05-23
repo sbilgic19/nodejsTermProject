@@ -69,28 +69,39 @@ function registerUser(name, surname, age, email, password, callback) {
 
 }
 
-function retrieveFilms(primaryTitle, genre, duration, averageRating, releaseYear, callback) {
+function retrieveFilms(primaryTitle, genres, durations, averageRating, listReleaseYear, callback) {
   var sql = `SELECT DISTINCT movie.* FROM movie `;
 
-
-  if (genre) {
-    sql += `INNER JOIN moviegenre ON movie.tconst = moviegenre.tconst AND moviegenre.genre = '${genre}'`;
-  } else {
-    sql += `LEFT JOIN moviegenre ON movie.tconst = moviegenre.tconst`;
+  sql += `INNER JOIN moviegenre ON movie.tconst = moviegenre.tconst AND (`;
+  for (var cur = 0; cur < genres.length; cur++) {
+    if (genres[cur] == true) {
+      sql += `moviegenre.genre = '${genres[cur]}' OR `; // assuming adding \r is no more needed for db access
+    }
   }
 
-  sql += " WHERE 1=1";
+  sql += `0 = 1) WHERE 1=1`;
 
-  if (primaryTitle) {
+  if (primaryTitle != "") {
     sql += ` AND movie.primaryTitle = '${primaryTitle}`;
   }
 
-  if (duration) {
-    if (duration === "Less than 40 minutes") {
-      sql += " AND movie.duration < 40";
-    } else if (duration === "More than 150 minutes") {
-      sql += " AND movie.duration >= 150";
-    } else {
+  for (var dur = 0; dur < durations.length; dur++) {
+    if (durations[dur] == true) {
+      if (durations[dur] === "Less than 40 minutes") {
+        sql += " OR movie.duration < 40";
+      } else if (durations[dur] === "More than 150 minutes") {
+        sql += " OR movie.duration >= 150";
+      } else if (durations[dur] === "Between 40 and 70 minutes") {
+        sql += " OR (movie.duration >= 40 AND movie.duration < 70)";
+      } else if (durations[dur] === "Between 70 and 150 minutes") {
+        sql += " OR (movie.duration >= 70 AND movie.duration < 150)";
+      }
+    }
+
+
+
+
+    else {
       const [startDuration, endDuration] = duration.split("-");
       if (startDuration && endDuration) {
         sql += ` AND movie.duration >= ${startDuration.trim()} AND movie.duration <= ${endDuration.trim()}`;
@@ -99,19 +110,34 @@ function retrieveFilms(primaryTitle, genre, duration, averageRating, releaseYear
   }
 
   if (averageRating) {
-    const minRating = parseInt(averageRating);
+    const minRating = averageRating;
+    // note that default is zero, so if the user does not select a min rating, we do not need to take any explicit step to handle that
     sql += ` AND movie.averageRating >= ${minRating}`;
   }
 
-  if (releaseYear) {
-    if (releaseYear === "Before 1920") {
-      sql += " AND movie.releaseYear < 1920";
-    } else if (releaseYear === "After 2020") {
-      sql += " AND movie.releaseYear >= 2020";
-    } else {
-      const [startYear, endYear] = releaseYear.split("-");
-      if (startYear && endYear) {
-        sql += ` AND movie.releaseYear >= ${startYear.trim()} AND movie.releaseYear <= ${endYear.trim()}`;
+  // if (releaseYear) {
+  //   if (releaseYear === "Before 1920") {
+  //     sql += " AND movie.releaseYear < 1920";
+  //   } else if (releaseYear === "After 2020") {
+  //     sql += " AND movie.releaseYear >= 2020";
+  //   } else {
+  //     const [startYear, endYear] = releaseYear.split("-");
+  //     if (startYear && endYear) {
+  //       sql += ` AND movie.releaseYear >= ${startYear.trim()} AND movie.releaseYear <= ${endYear.trim()}`;
+  //     }
+  //   }
+
+
+  for (var idx = 0; idx < listReleaseYear.length; idx++) {
+    if (listReleaseYear[idx] == true) {
+      if (durations[dur] === "duration0040") {
+        sql += " OR movie.duration < 40";
+      } else if (listReleaseYear[idx] === "duration150") {
+        sql += " OR movie.duration >= 150";
+      } else if (listReleaseYear[idx] === "duration4070") {
+        sql += " OR (movie.duration >= 40 AND movie.duration < 70)";
+      } else if (listReleaseYear[idx]) === "duration70150") {
+        sql += " OR (movie.duration >= 70 AND movie.duration < 150)";
       }
     }
   }
@@ -129,20 +155,53 @@ function retrieveFilms(primaryTitle, genre, duration, averageRating, releaseYear
 
 app.get('/retrieveFilms', (req, res) => {
   var primaryTitle = req.query.primaryTitle;
-  var releaseYear1920 = req.query.releaseYear1920;
-  var releaseYear2040 = req.query.releaseYear2040;
-  var releaseYear4060 = req.query.releaseYear4060;
-  var releaseYear6080 = req.query.releaseYear6080;
-  var releaseYear8000 = req.query.releaseYear8000;
-  var releaseYear0010 = req.query.releaseYear0010;
-  var releaseYear1020 = req.query.releaseYear1020;
-  var releaseYear2020 = req.query.releaseYear2020;
-  var releaseYear1920 = req.query.releaseYear1920;
+
+  // create a list of release years
+  var listReleaseYears = [];
+  var isAll = true;
+  listReleaseYears.push(req.query.releaseYear1920);
+  listReleaseYears.push(req.query.releaseYear2040);
+  listReleaseYears.push(req.query.releaseYear4060);
+  listReleaseYears.push(req.query.releaseYear6080);
+  listReleaseYears.push(req.query.releaseYear8000);
+  listReleaseYears.push(req.query.releaseYear0010);
+  listReleaseYears.push(req.query.releaseYear1020);
+  listReleaseYears.push(req.query.releaseYear2020);
+  for (var i = 0; i < listReleaseYears.length; i++) {
+    if (listReleaseYears[i] == false) {
+      isAll = false;
+    }
+  }
+
+  if (isAll == true) {
+    for (var i = 0; i < listReleaseYears.length; i++) {
+      listReleaseYears[i] == true;
+    }
+  }
+
 
   var duration0040 = req.query.duration0040;
   var duration4070 = req.query.duration4070;
   var duration70150 = req.query.duration70150;
   var duration150 = req.query.duration150;
+
+  var durations = [];
+  isAll = true;
+  durations.push(req.query.duration0040);
+  durations.push(req.query.duration4070);
+  durations.push(req.query.duration70150);
+  durations.push(req.query.duration150);
+  for (var i = 0; i < durations.length; i++) {
+    if (durations[i] == false) {
+      isAll = false;
+    }
+  }
+
+  if (isAll == true) {
+    for (var i = 0; i < durations.length; i++) {
+      durations[i] == true;
+    }
+  }
 
   var genreDrama = req.query.genreDrama;
   var genreHistory = req.query.genreHistory;
@@ -152,12 +211,33 @@ app.get('/retrieveFilms', (req, res) => {
   var genreWestern = req.query.genreWestern;
   var genreBiography = req.query.genreBiography;
 
-  var releaseYear1920 = req.query.releaseYear1920;
+  var genres = [];
+  isAll = true;
+  genres.push(req.query.genreDrama);
+  genres.push(req.query.genreHistory);
+  genres.push(req.query.genreComedy);
+  genres.push(req.query.genreRomance);
+  genres.push(req.query.genreFamily);
+  genres.push(req.query.genreWestern);
+  genres.push(req.query.genreBiography);
+  for (var i = 0; i < genres.length; i++) {
+    if (genres[i] == false) {
+      isAll = false;
+    }
+  }
+
+  if (isAll == true) {
+    for (var i = 0; i < genres.length; i++) {
+      genres[i] == true;
+    }
+  }
+
+
+
   var averageRating = req.query.averageRating;
-  var genre = req.query.genre;
-  var duration = req.query.duration;
+
   retrieveFilms(
-    primaryTitle, genre, duration, averageRating, releaseYear, (result) => {
+    primaryTitle, genres, durations, averageRating, listReleaseYears, (result) => {
       res.send(result);
     });
 });
@@ -184,3 +264,4 @@ app.post('/registerUser', (req, res) => {
 app.listen(PORT, () => {
   console.log("Server started");
 });
+
