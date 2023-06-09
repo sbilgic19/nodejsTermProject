@@ -8,7 +8,7 @@
     <title>Film Database</title>
 
     <link rel="stylesheet" href="films_page.css">
-    <script src="middle.js"></script>
+    <script src="../middle.js"></script>
     <script src="films_page.js"></script>
 
 
@@ -78,8 +78,12 @@
             <li><label><input type="checkbox" name="duration" id="duration-More than 150 minutes"
                         onclick="applyFilter('duration150', 'More than 150 minutes')">More than 150 minutes</label></li>
         </ul>
+        <div class="button-container">
 
-        <button onclick="performSearch()">Search</button>
+            <button onclick="performSearch()">Search</button>
+            <button onclick="randomLoad()">I'm Feeling Lucky</button>
+        </div>
+
     </div>
     <div id="main-content">
 

@@ -128,4 +128,73 @@ function performSearch() {
     });
 }
 
+function randomLoad() {
+    let randomFilters = {};
+    initialize_selectedFilters()
 
+    const checkboxes = document.querySelectorAll('input[type="checkbox"]');
+    checkboxes.forEach((checkbox) => {
+        checkbox.checked = false;
+    });
+
+    const averageRatingRadios = document.querySelectorAll('input[name="averageRating"]');
+    averageRatingRadios.forEach((radio) => {
+        radio.checked = false;
+    });
+
+    const searchInput = document.getElementById('search-bar');
+    searchInput.value = '';
+
+
+    randomFilters['primaryTitle'] = '';
+    randomFilters['releaseYear1920'] = Math.random() < 0.2;
+    randomFilters['releaseYear2040'] = Math.random() < 0.2;
+    randomFilters['releaseYear4060'] = Math.random() < 0.2;
+    randomFilters['releaseYear6080'] = Math.random() < 0.2;
+    randomFilters['releaseYear8000'] = Math.random() < 0.2;
+    randomFilters['releaseYear0010'] = Math.random() < 0.2;
+    randomFilters['releaseYear1020'] = Math.random() < 0.2;
+    randomFilters['releaseYear2020'] = Math.random() < 0.2;
+    randomFilters['releaseYear1920'] = Math.random() < 0.2;
+    randomFilters['duration0040'] = Math.random() < 0.5;
+    randomFilters['duration4070'] = Math.random() < 0.5;
+    randomFilters['duration70150'] = Math.random() < 0.5;
+    randomFilters['duration150'] = Math.random() < 0.5;
+    randomFilters['averageRating'] = 0;
+    randomFilters['genreDrama'] = Math.random() < 0.3;
+    randomFilters['genreHistory'] = Math.random() < 0.5;
+    randomFilters['genreComedy'] = Math.random() < 0.3;
+    randomFilters['genreRomance'] = Math.random() < 0.3;
+    randomFilters['genreFamily'] = Math.random() < 0.3;
+    randomFilters['genreWestern'] = Math.random() < 0.3;
+    randomFilters['genreBiography'] = Math.random() < 0.3;
+
+    submitSearchRequest(randomFilters, (data) => {
+        // Clear previous results
+        document.getElementById('results').innerHTML = '';
+
+        // Create a div for each movie in the results
+        data.forEach((movie, index) => {
+            const movieDiv = document.createElement('div');
+            movieDiv.id = `movie-${index}`;
+            movieDiv.classList.add('movie-item');
+
+            // Add details about the movie to the div
+            movieDiv.innerHTML = `
+                <div class="movie-title"><h2>${movie.primaryTitle}</h2></div>
+                <div class="movie-release-year"><p>Release Year: ${movie.releaseYear}</p></div>
+                <div class="movie-average-rating"><p>Average Rating: ${movie.averageRating}</p></div>
+                <div class="movie-duration"><p>Duration: ${movie.duration} minutes</p></div>
+                <div class="movie-description"><p>Description: ${movie.description}</p></div>
+                <div class="movie-image">${movie.imageURL ? `<img src="${movie.imageURL}" alt="${movie.primaryTitle}">` : `<img src="https://media.comicbook.com/files/img/default-movie.png" alt="No image available">`}</div>
+            `;
+
+            // Add the movie div to the results div
+            document.getElementById('results').appendChild(movieDiv);
+        });
+    });
+}
+
+document.addEventListener('DOMContentLoaded', () => {
+    randomLoad();
+});
