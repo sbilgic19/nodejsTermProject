@@ -157,6 +157,8 @@ function retrieveFilms(primaryTitle, genres, durations, averageRating, listRelea
     sql += ` AND (${releaseYearFilter})`;
   }
 
+  sql += ` LIMIT 200`;
+
   // console.log(sql); for debug purposes
 
   pool.query(sql, (err, results) => {
