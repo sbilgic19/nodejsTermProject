@@ -20,63 +20,63 @@
 
         <h3 onclick="toggleFilterMenu('releaseYear')">Release Year</h3>
         <ul id="releaseYear">
-            <li><label><input type="radio" name="releaseYear" id="releaseYear-Before 1920"
-                        onclick="applyFilter('releaseYear', 'Before 1920')">Before 1920</label></li>
-            <li><label><input type="radio" name="releaseYear" id="releaseYear-1920 - 1940"
-                        onclick="applyFilter('releaseYear', '1920 - 1940')">1920 - 1940</label></li>
-            <li><label><input type="radio" name="releaseYear" id="releaseYear-1940 - 1960"
-                        onclick="applyFilter('releaseYear', '1940 - 1960')">1940 - 1960</label></li>
-            <li><label><input type="radio" name="releaseYear" id="releaseYear-1960 - 1980"
-                        onclick="applyFilter('releaseYear', '1960 - 1980')">1960 - 1980</label></li>
-            <li><label><input type="radio" name="releaseYear" id="releaseYear-1980 - 2000"
-                        onclick="applyFilter('releaseYear', '1980 - 2000')">1980 - 2000</label></li>
-            <li><label><input type="radio" name="releaseYear" id="releaseYear-2000 - 2010"
-                        onclick="applyFilter('releaseYear', '2000 - 2010')">2000 - 2010</label></li>
-            <li><label><input type="radio" name="releaseYear" id="releaseYear-2010 - 2020"
-                        onclick="applyFilter('releaseYear', '2010 - 2020')">2010 - 2020</label></li>
-            <li><label><input type="radio" name="releaseYear" id="releaseYear-After 2020"
-                        onclick="applyFilter('releaseYear', 'After 2020')">After 2020</label></li>
+            <li><label><input type="checkbox" name="releaseYear" id="releaseYear-Before 1920"
+                        onclick="applyFilter('releaseYear1920', 'Before 1920')">Before 1920</label></li>
+            <li><label><input type="checkbox" name="releaseYear" id="releaseYear-1920 - 1940"
+                        onclick="applyFilter('releaseYear2040', '1920 - 1940')">1920 - 1940</label></li>
+            <li><label><input type="checkbox" name="releaseYear" id="releaseYear-1940 - 1960"
+                        onclick="applyFilter('releaseYear4060', '1940 - 1960')">1940 - 1960</label></li>
+            <li><label><input type="checkbox" name="releaseYear" id="releaseYear-1960 - 1980"
+                        onclick="applyFilter('releaseYear6080', '1960 - 1980')">1960 - 1980</label></li>
+            <li><label><input type="checkbox" name="releaseYear" id="releaseYear-1980 - 2000"
+                        onclick="applyFilter('releaseYear8000', '1980 - 2000')">1980 - 2000</label></li>
+            <li><label><input type="checkbox" name="releaseYear" id="releaseYear-2000 - 2010"
+                        onclick="applyFilter('releaseYear0010', '2000 - 2010')">2000 - 2010</label></li>
+            <li><label><input type="checkbox" name="releaseYear" id="releaseYear-2010 - 2020"
+                        onclick="applyFilter('releaseYear1020', '2010 - 2020')">2010 - 2020</label></li>
+            <li><label><input type="checkbox" name="releaseYear" id="releaseYear-After 2020"
+                        onclick="applyFilter('releaseYear2020', 'After 2020')">After 2020</label></li>
         </ul>
 
         <h3 onclick="toggleFilterMenu('averageRating')">Average Rating</h3>
         <ul id="averageRating">
-            <li><label><input type="radio" name="averageRating" id="averageRating-9+"
-                        onclick="applyFilter('averageRating', '9+')">9 +</label></li>
-            <li><label><input type="radio" name="averageRating" id="averageRating-8+"
-                        onclick="applyFilter('averageRating', '8+')">8 +</label></li>
-            <li><label><input type="radio" name="averageRating" id="averageRating-7+"
-                        onclick="applyFilter('averageRating', '7+')">7 +</label></li>
-            <li><label><input type="radio" name="averageRating" id="averageRating-6+"
-                        onclick="applyFilter('averageRating', '6+')">6 +</label></li>
+            <li><label><input type="radio" name="averageRating" id="9" onclick="applyFilter('averageRating', '9')">9
+                    +</label></li>
+            <li><label><input type="radio" name="averageRating" id="8" onclick="applyFilter('averageRating', '8')">8
+                    +</label></li>
+            <li><label><input type="radio" name="averageRating" id="7" onclick="applyFilter('averageRating', '7')">7
+                    +</label></li>
+            <li><label><input type="radio" name="averageRating" id="6+" onclick="applyFilter('averageRating', '6')">6
+                    +</label></li>
         </ul>
 
         <h3 onclick="toggleFilterMenu('genre')">Genre</h3>
         <ul id="genre">
-            <li><label><input type="radio" name="genre" id="genre-Drama"
-                        onclick="applyFilter('genre', 'Drama')">Drama</label></li>
-            <li><label><input type="radio" name="genre" id="genre-History"
-                        onclick="applyFilter('genre', 'History')">History</label></li>
-            <li><label><input type="radio" name="genre" id="genre-Comedy"
-                        onclick="applyFilter('genre', 'Comedy')">Comedy</label></li>
-            <li><label><input type="radio" name="genre" id="genre-Romance"
-                        onclick="applyFilter('genre', 'Romance')">Romance</label></li>
-            <li><label><input type="radio" name="genre" id="genre-Family"
-                        onclick="applyFilter('genre', 'Family')">Family</label></li>
-            <li><label><input type="radio" name="genre" id="genre-Western"
-                        onclick="applyFilter('genre', 'Western')">Western</label></li>
-            <li><label><input type="radio" name="genre" id="genre-Biography"
-                        onclick="applyFilter('genre', 'Biography')">Biography</label></li>
+            <li><label><input type="checkbox" name="genre" id="genre-Drama"
+                        onclick="applyFilter('genreDrama', 'Drama')">Drama</label></li>
+            <li><label><input type="checkbox" name="genre" id="genre-History"
+                        onclick="applyFilter('genreHistory', 'History')">History</label></li>
+            <li><label><input type="checkbox" name="genre" id="genre-Comedy"
+                        onclick="applyFilter('genreComedy', 'Comedy')">Comedy</label></li>
+            <li><label><input type="checkbox" name="genre" id="genre-Romance"
+                        onclick="applyFilter('genreRomance', 'Romance')">Romance</label></li>
+            <li><label><input type="checkbox" name="genre" id="genre-Family"
+                        onclick="applyFilter('genreFamily', 'Family')">Family</label></li>
+            <li><label><input type="checkbox" name="genre" id="genre-Western"
+                        onclick="applyFilter('genreWestern', 'Western')">Western</label></li>
+            <li><label><input type="checkbox" name="genre" id="genre-Biography"
+                        onclick="applyFilter('genreBiography', 'Biography')">Biography</label></li>
         </ul>
         <h3 onclick="toggleFilterMenu('duration')">Duration</h3>
         <ul id="duration">
-            <li><label><input type="radio" name="duration" id="duration-Less than 40 minutes"
-                        onclick="applyFilter('duration', 'Less than 40 minutes')">Less than 40 minutes</label></li>
-            <li><label><input type="radio" name="duration" id="duration-40 - 70"
-                        onclick="applyFilter('duration', '40 - 70')">40 - 70 minutes</label></li>
-            <li><label><input type="radio" name="duration" id="duration-70 - 150"
-                        onclick="applyFilter('duration', '70 - 150')">70 - 150 minutes</label></li>
-            <li><label><input type="radio" name="duration" id="duration-More than 150 minutes"
-                        onclick="applyFilter('duration', 'More than 150 minutes')">More than 150 minutes</label></li>
+            <li><label><input type="checkbox" name="duration" id="duration-Less than 40 minutes"
+                        onclick="applyFilter('duration0040', 'Less than 40 minutes')">Less than 40 minutes</label></li>
+            <li><label><input type="checkbox" name="duration" id="duration-40 - 70"
+                        onclick="applyFilter('duration4070', '40 - 70')">40 - 70 minutes</label></li>
+            <li><label><input type="checkbox" name="duration" id="duration-70 - 150"
+                        onclick="applyFilter('duration70150', '70 - 150')">70 - 150 minutes</label></li>
+            <li><label><input type="checkbox" name="duration" id="duration-More than 150 minutes"
+                        onclick="applyFilter('duration150', 'More than 150 minutes')">More than 150 minutes</label></li>
         </ul>
 
         <button onclick="performSearch()">Search</button>
@@ -85,7 +85,6 @@
 
         <div id="search-container">
             <input type="text" id="search-bar" placeholder="Search for a film..." />
-            <button onclick="applyFilter('primaryTitle', )">Apply</button>
         </div>
         <div id="results" class="results"></div>
     </div>
