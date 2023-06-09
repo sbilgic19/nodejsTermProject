@@ -157,7 +157,7 @@ function retrieveFilms(primaryTitle, genres, durations, averageRating, listRelea
     sql += ` AND (${releaseYearFilter})`;
   }
 
-  console.log(sql);
+  // console.log(sql); for debug purposes
 
   pool.query(sql, (err, results) => {
     if (err) {

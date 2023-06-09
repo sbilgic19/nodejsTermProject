@@ -1,8 +1,3 @@
-// here are the known bugs as of this commit
-// genre selection is causing database related query generation problems.
-// name search frontent-backend interaction is problematic
-
-
 let selectedFilters = {};
 let is_initial = true;
 
@@ -91,8 +86,7 @@ function applyFilter(filterType, filterValue) {
 
 
     // Send the selectedFilters object to the backend for processing
-    console.log(selectedFilters);
-    // TODO: Implement the actual filtering and display the results
+    // console.log(selectedFilters); for debug purposes
 }
 
 function performSearch() {
@@ -125,7 +119,7 @@ function performSearch() {
                 <div class="movie-average-rating"><p>Average Rating: ${movie.averageRating}</p></div>
                 <div class="movie-duration"><p>Duration: ${movie.duration} minutes</p></div>
                 <div class="movie-description"><p>Description: ${movie.description}</p></div>
-                <div class="movie-image"><img src="${movie.imageURL}" alt="${movie.primaryTitle}"></div>
+                <div class="movie-image">${movie.imageURL ? `<img src="${movie.imageURL}" alt="${movie.primaryTitle}">` : `<img src="https://media.comicbook.com/files/img/default-movie.png" alt="No image available">`}</div>
             `;
 
             // Add the movie div to the results div
