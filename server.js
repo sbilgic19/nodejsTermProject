@@ -15,7 +15,7 @@ const pool = mysql.createPool({
   host: 'localhost',
   user: 'root',
   password: '***100alti',
-  database: 'teamnode'
+  database: 'comp306project'
 });
 
 //test connection
@@ -78,7 +78,7 @@ function retrieveFilms(primaryTitle, genres, durations, averageRating, listRelea
   for (let genre in genres) {
     if (genres[genre]) {
       genreFilter += genreFilter ? " OR " : "";
-      genreFilter += `moviegenre.genre = '${genre}'`;
+      genreFilter += `moviegenre.genre = '${genre}\\r'`;
     }
   }
 
@@ -111,6 +111,7 @@ function retrieveFilms(primaryTitle, genres, durations, averageRating, listRelea
       }
     }
   }
+
 
   if (durationFilter) {
     sql += ` AND (${durationFilter})`;
