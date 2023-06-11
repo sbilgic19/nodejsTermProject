@@ -20,7 +20,8 @@ const pool = mysql.createPool({
 
 //test connection
 app.get("/getAllTvSeries", (req, res) => {
-  pool.query(`SELECT * FROM tvseries`, (error, results) => {
+  pool.query(`SELECT tvseries.tconst, primaryTitle, isAdult, startYear, endYear, averageRating, description, imageUrl, genre
+   FROM tvseries, tvseriesgenre WHERE tvseries.tconst=tvseriesgenre.tconst;`, (error, results) => {
     if (error) throw error;
     res.send(results);
   });
