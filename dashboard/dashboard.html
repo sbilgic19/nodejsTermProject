@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Dashboard</title>
+
+    <link rel="stylesheet" href="dashboard.css">
+    <script src="./middle.js"></script>
+    <script src="dashboard.js"></script>
+    <link rel="stylesheet" href="dashboard3.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    <div class="header">
+        <div class="logo">IMDB</div>
+        <div class="navbar">
+            <a href="../movies/films_page.html">MOVIES</a>
+            <a href="../tvSeries/alltvseries.html">TV SERIES</a>
+            <a href="../actors/actors.html">ACTORS</a>
+        </div>
+        <a href="dashboard.html">DASHBOARD</a>
+    </div>
+  <div class="container">
+    <div class="info-box histogram">
+      <h2>Top 10 Rated Movies for Each Genre</h2>
+      <canvas id="movieHistogram"></canvas>
+    </div>
+    <div class="info-box histogram">
+      <h2>Top 10 Rated TV Series for Each Genre</h2>
+      <canvas id="tvSeriesHistogram"></canvas>
+    </div>
+    <div class="info-box histogram">
+      <h2>Most Voted TV Series for Each Genre</h2>
+      <canvas id="tvSeriesVotesHistogram"></canvas>
+    </div>
+    <div class="info-box histogram">
+      <h2>Most Voted Movies for Each Genre</h2>
+      <canvas id="movieVotesHistogram"></canvas>
+    </div>
+    <div class="info-box text-only">
+      <h2>Youthful Movie and TV Series Actors</h2>
+      <p>CONTENT</p>
+    </div>
+    <div class="info-box pie-chart">
+      <h2>User Age Distribution</h2>
+      <canvas id="piechart"></div>
+    </div>
+    
+  </div>
+</body>
+<script>
+  var movieHistogram = new Chart(document.getElementById("movieHistogram"), {
+    type: "bar",
+    data: {
+      labels: ["Genre 1", "Genre 2", "Genre 3"], // Replace with actual genre names
+      datasets: [{
+        label: "Top 10 Rated Movies",
+        data: [80, 70, 90], // Replace with actual movie ratings
+        backgroundColor: "rgba(75, 192, 192, 0.6)"
+      }]
+    },
+    options: {
+      scales: {
+        y: {
+          beginAtZero: true
+        }
+      }
+    }
+  });
+  var tvSeriesHistogram = new Chart(document.getElementById("tvSeriesHistogram"), {
+    type: "bar",
+    data: {
+      labels: ["Genre 1", "Genre 2", "Genre 3"], // Replace with actual genre names
+      datasets: [{
+        label: "Top 10 Rated TV Series",
+        data: [85, 75, 95], // Replace with actual TV series ratings
+        backgroundColor: "rgba(54, 162, 235, 0.6)"
+      }]
+    },
+    options: {
+      scales: {
+        y: {
+          beginAtZero: true
+        }
+      }
+    }
+  });
+
+  // Histogram - Top 10 Rated TV Series for Each Genre
+  var tvSeriesVotesHistogram = new Chart(document.getElementById("tvSeriesVotesHistogram"), {
+    type: "bar",
+    data: {
+      labels: ["Genre 1", "Genre 2", "Genre 3"], // Replace with actual genre names
+      datasets: [{
+        label: "Most Voted TV Series",
+        data: [1200, 1500, 900], // Replace with actual TV series votes count
+        backgroundColor: "rgba(255, 99, 132, 0.6)"
+      }]
+    },
+    options: {
+      scales: {
+        y: {
+          beginAtZero: true
+        }
+      }
+    }
+  });
+  // Histogram - Most Voted Movies for Each Genre
+  var movieVotesHistogram = new Chart(document.getElementById("movieVotesHistogram"), {
+    type: "bar",
+    data: {
+      labels: ["Genre 1", "Genre 2", "Genre 3"], // Replace with actual genre names
+      datasets: [{
+        label: "Most Voted Movies",
+        data: [1800, 2000, 1600], // Replace with actual movie votes count
+        backgroundColor: "rgba(255, 205, 86, 0.6)"
+      }]
+    },
+    options: {
+      scales: {
+        y: {
+          beginAtZero: true
+        }
+      }
+    }
+  });
+
+  // Pie Chart - User Age Distribution
+  var piechart = new Chart(document.getElementById("piechart"), {
+    type: "pie",
+    data: {
+      labels: ["Under 18", "18-24", "25-34", "35-49", "50+"], // Replace with actual age groups
+      datasets: [{
+        data: [25, 35, 20, 10, 10], // Replace with actual user count for each age group
+        backgroundColor: ["#FF6384", "#36A2EB", "#FFCE56", "#4BC0C0", "#9966FF"]
+      }]
+    },
+    options: {
+      title: {
+        display: true,
+        text: "User Age Distribution"
+      }
+    }
+  });
+  </script>
+</html>

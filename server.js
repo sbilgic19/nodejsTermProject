@@ -232,6 +232,9 @@ app.get('/retrieveFilms', (req, res) => {
   );
 });
 
+app.get('/dashboard', (req, res) => {
+  
+}); 
 
 app.get('/authenticateUser', (req, res) => {
   var email = req.query.email;
