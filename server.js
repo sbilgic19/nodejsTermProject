@@ -14,7 +14,7 @@ app.use(bodyParser.json());
 const pool = mysql.createPool({
   host: 'localhost',
   user: 'root',
-  password: 's3rk4ns3rk4n',
+  password: 'est2001p',
   database: 'projectdb'
 
 });
@@ -256,6 +256,43 @@ app.post('/registerUser', (req, res) => {
     res.send(result);
   });
 });
+
+const userAgeDistribution = `SELECT
+age_groups.AgeGroup,
+COUNT(user.age) AS UserCount
+FROM (
+SELECT '10-17' AS AgeGroup
+UNION ALL
+SELECT '18-25' AS AgeGroup
+UNION ALL
+SELECT '26-35' AS AgeGroup
+UNION ALL
+SELECT '37-45' AS AgeGroup
+UNION ALL
+SELECT '50+' AS AgeGroup
+) AS age_groups
+LEFT JOIN user ON (
+CASE
+  WHEN user.age BETWEEN 10 AND 17 THEN '10-17'
+  WHEN user.age BETWEEN 18 AND 25 THEN '18-25'
+  WHEN user.age BETWEEN 26 AND 35 THEN '26-35'
+  WHEN user.age BETWEEN 41 AND 45 THEN '37-45'
+  ELSE '50+'
+END
+) = age_groups.AgeGroup
+GROUP BY age_groups.AgeGroup;`
+
+app.get('/userAgeDistribution', (req, res) => {
+  pool.query(userAgeDistribution, (err, results) => {
+    if (err) {
+      console.error('Error executing SQL query:', err);
+      res.status(500).json({ error: 'Internal server error' });
+      return;
+    }
+    res.send(results);
+  });
+});
+
 
 app.listen(PORT, () => {
   console.log("Server started");

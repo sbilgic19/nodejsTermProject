@@ -1,31 +1,21 @@
-fetch('/api/movies') // Replace '/api/movies' with the actual API endpoint URL
-  .then(response => response.json())
-  .then(data => {
-    // Process the data and extract the genre names and ratings
-    const genreNames = data.map(movie => movie.genreName);
-    const ratings = data.map(movie => movie.rating);
-
-    // Create the chart using the retrieved data
-    var movieHistogram = new Chart(document.getElementById("movieHistogram"), {
-      type: "bar",
-      data: {
-        labels: genreNames,
-        datasets: [{
-          label: "Top 10 Rated Movies",
-          data: ratings,
-          backgroundColor: "rgba(75, 192, 192, 0.6)"
-        }]
-      },
-      options: {
-        scales: {
-          y: {
-            beginAtZero: true
-          }
-        }
+function updatePieChart(data) {
+  var piechart = new Chart(document.getElementById("piechart"), {
+    type: "pie",
+    data: {
+      labels: ["Under 18", "18-24", "25-34", "35-49", "50+"],
+      datasets: [{
+        data: data.map((row) => row.UserCount),
+        backgroundColor: ["#FF6384", "#36A2EB", "#FFCE56", "#4BC0C0", "#9966FF"]
+      }]
+    },
+    options: {
+      title: {
+        display: true,
+        text: "User Age Distribution"
       }
-    });
-  })
-  .catch(error => {
-    console.error('Error:', error);
+    }
   });
+}
 
+// Call the updateDashboard function and pass the updatePieChart function as a callback
+updateDashboard(updatePieChart);
