@@ -130,7 +130,6 @@ button:hover {
     display: flex;
     justify-content: center;
     align-items: center;
-    margin-bottom: 20px;
 }
 
 #search-bar {
@@ -203,4 +202,36 @@ button:hover {
     display: flex;
     flex-direction: column;
     align-items: flex-start;
+}
+
+.button-container {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+}
+
+/* CSS for the navbar */
+.navbar {
+    background-color: #f1f1f1;
+    overflow: hidden;
+}
+
+.navbar a {
+    float: left;
+    display: block;
+    color: #333;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+}
+
+.navbar a:hover {
+    background-color: #ddd;
+    color: black;
+}
+
+.navbar a.active {
+    background-color: #4CAF50;
+    color: white;
 }
