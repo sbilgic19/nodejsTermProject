@@ -1,68 +1,211 @@
-/* The sidebar menu */
-.sidenav {
-    height: 100%;
-    /* Full-height: remove this if you want "auto" height */
-    width: 160px;
-    /* Set the width of the sidebar */
-    position: fixed;
-    /* Fixed Sidebar (stay in place on scroll) */
-    z-index: 1;
-    /* Stay at the top */
-    left: 0;
-    background-color: wheat;
-    overflow-x: hidden;
-    /* Disable horizontal scroll */
-    padding-top: 20px;
-    margin-right: 250px;
-    margin-top: 20px;
+:root {
+    --primary-color: #333;
+    --primary-font: 'Roboto', sans-serif;
+    --secondary-font: 'Open Sans', sans-serif;
+    --text-color: #333;
+    --light-text-color: #666;
+    --lighter-text-color: #777;
+    --bg-color: #f9f9f9;
+    --light-bg-color: #f1f1f1;
+    --white-color: #fff;
+    --box-shadow: 0 2px 5px rgba(0, 0, 0, 0.15);
 }
 
-.navbar a {
-    margin-left: 10px;
-    margin-right: 10px;
-    text-align: center;
-}
-
-/* The navigation menu links */
-.sidenav a {
-    padding: 15px;
-    text-decoration: none;
-    font-size: 25px;
-    color: #818181;
-    display: block;
-    margin-right: 25px;
-}
-
-
-/* When you mouse over the navigation links, change their color */
-.sidenav a:hover {
-    color: #f1f1f1;
-}
-
-/* Style page content */
-.main {
-    /* margin-left: 160px;*/
-    /* Same as the width of the sidebar */
-    /* padding: 0px 10px; */
-}
-
-/* On smaller screens, where height is less than 450px, change the style of the sidebar (less padding and a smaller font size) */
-@media screen and (max-height: 450px) {
-    .sidenav {
-        padding-top: 15px;
-    }
-
-    .sidenav a {
-        font-size: 18px;
-    }
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
 }
 
 body {
-    background-color: black;
+    font-family: var(--primary-font);
+    background-color: var(--bg-color);
+    padding-left: 270px;
 }
 
-.navbar {
-    background-color: peru;
+.sidebar {
     position: fixed;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    width: 250px;
+    padding: 20px;
+    background-color: var(--light-bg-color);
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: flex-start;
+}
 
+h2,
+h3 {
+    margin-top: 20px;
+}
+
+h3 {
+    cursor: pointer;
+}
+
+ul {
+    list-style: none;
+}
+
+li {
+    margin: 5px 0;
+}
+
+.filter-link {
+    cursor: pointer;
+    text-decoration: underline;
+    color: var(--primary-color);
+}
+
+button {
+    display: block;
+    margin-top: 20px;
+    padding: 10px;
+    font-size: 1rem;
+    font-weight: bold;
+    background-color: var(--primary-color);
+    color: var(--white-color);
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+button:hover {
+    background-color: #555;
+}
+
+.results {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    padding: 20px;
+    gap: 20px;
+}
+
+.tvs-item {
+    width: 300px;
+    padding: 20px;
+    background-color: var(--white-color);
+    border-radius: 5px;
+    box-shadow: var(--box-shadow);
+    text-align: center;
+}
+
+.tvs-title h2 {
+    margin-bottom: 10px;
+    font-size: 20px;
+    color: var(--text-color);
+}
+
+.tvs-release-year,
+.tvs-average-rating,
+.tvs-airtime {
+    margin: 5px 0;
+    font-size: 16px;
+    color: var(--light-text-color);
+}
+
+.tvs-description {
+    margin: 10px 0;
+    color: var(--light-text-color);
+    font-size: 14px;
+}
+
+.tvs-image img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 5px;
+}
+
+#main-content {
+    padding: 20px;
+}
+
+#search-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+#search-bar {
+    width: 70%;
+    padding: 10px;
+    font-size: 1rem;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+}
+
+#search-container button {
+    padding: 10px 20px;
+    font-size: 1rem;
+    font-weight:
+        bold;
+    background-color: var(--primary-color);
+    color: var(--white-color);
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-left: 10px;
+}
+
+/* Additional styling for a minimalistic background design */
+body {
+    background-image: linear-gradient(to right, var(--bg-color) 50%, var(--light-bg-color) 50%);
+}
+
+.movie-item {
+    background-color: var(--light-bg-color);
+}
+
+/* Additional styling for consistent colors */
+h2,
+h3,
+.filter-link,
+.tvs-average-rating,
+.tvs-airtime {
+    color: var(--primary-color);
+}
+
+/* Additional styling for modern and stylish fonts */
+body {
+    font-family: var(--secondary-font);
+}
+
+.tvs-title h2 {
+    font-family: var(--primary-font);
+}
+
+.tvs-description {
+    font-family: var(--secondary-font);
+}
+
+.tvs-genres {
+    font-family: var(--primary-font);
+    color: blue;
+}
+
+/* Additional styling for animations on button hover */
+button:hover {
+    background-color: #555;
+    transform: scale(1.05);
+}
+
+/* Additional styling for a centered sidebar search button */
+.sidebar #search-container {
+    justify-content: flex-start;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+/* Additional styling for filters aligned to the right */
+.sidebar ul {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
 }
