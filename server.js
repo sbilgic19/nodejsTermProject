@@ -14,8 +14,8 @@ app.use(bodyParser.json());
 const pool = mysql.createPool({
   host: 'localhost',
   user: 'root',
-  password: 'DB_PASSWORD',
-  database: 'DB_NAME'
+  password: '***100alti',
+  database: 'comp306projectdb'
 });
 
 //test connection
@@ -69,7 +69,28 @@ function registerUser(name, surname, age, email, password, callback) {
 
 }
 
+function checkForSqlInjectionRisk(input) {
+
+  const sqlInjectionPattern = /('|--|\b(ALTER|CREATE|DELETE|DROP|INSERT|SELECT|UPDATE|RENAME|TRUNCATE)\b)/ig;
+  return sqlInjectionPattern.test(input);
+}
+
+
 function retrieveFilms(primaryTitle, genres, durations, averageRating, listReleaseYear, callback) {
+
+  if (checkForSqlInjectionRisk(primaryTitle)) {
+    console.log("SQL injection risk detected!");
+    empty_query = `SELECT * FROM movie WHERE 1=0`;
+    pool.query(empty_query, (err, results) => {
+      if (err) {
+        console.log(err);
+      } else {
+        callback(results);
+      }
+    });
+  }
+
+
   var sql = `SELECT DISTINCT movie.* FROM movie `;
   var genreFilter = '';
   var durationFilter = '';
@@ -78,12 +99,13 @@ function retrieveFilms(primaryTitle, genres, durations, averageRating, listRelea
   for (let genre in genres) {
     if (genres[genre]) {
       genreFilter += genreFilter ? " OR " : "";
-      genreFilter += `moviegenre.genre = '${genre}\\r'`;
+      genreFilter += `genre.genre = '${genre}'`;
     }
   }
 
   if (genreFilter) {
-    sql += ` INNER JOIN moviegenre ON movie.tconst = moviegenre.tconst AND (${genreFilter})`;
+    sql += ` INNER JOIN moviegenre ON movie.tconst = moviegenre.tconst`;
+    sql += ` INNER JOIN genre ON moviegenre.gconst = genre.gconst AND (${genreFilter})`;
   }
 
   sql += ' WHERE 1=1';
@@ -159,7 +181,7 @@ function retrieveFilms(primaryTitle, genres, durations, averageRating, listRelea
 
   sql += ` LIMIT 200`;
 
-  // console.log(sql); for debug purposes
+  console.log(sql);
 
   pool.query(sql, (err, results) => {
     if (err) {

@@ -114,12 +114,12 @@ function performSearch() {
 
             // Add details about the movie to the div
             movieDiv.innerHTML = `
+                <div class="movie-image">${movie.imageURL ? `<img src="${movie.imageURL}" alt="${movie.primaryTitle}">` : `<img src="https://media.comicbook.com/files/img/default-movie.png" alt="No image available">`}</div>
                 <div class="movie-title"><h2>${movie.primaryTitle}</h2></div>
                 <div class="movie-release-year"><p>Release Year: ${movie.releaseYear}</p></div>
                 <div class="movie-average-rating"><p>Average Rating: ${movie.averageRating}</p></div>
                 <div class="movie-duration"><p>Duration: ${movie.duration} minutes</p></div>
                 <div class="movie-description"><p>Description: ${movie.description}</p></div>
-                <div class="movie-image">${movie.imageURL ? `<img src="${movie.imageURL}" alt="${movie.primaryTitle}">` : `<img src="https://media.comicbook.com/files/img/default-movie.png" alt="No image available">`}</div>
             `;
 
             // Add the movie div to the results div
@@ -181,12 +181,12 @@ function randomLoad() {
 
             // Add details about the movie to the div
             movieDiv.innerHTML = `
+                <div class="movie-image">${movie.imageURL ? `<img src="${movie.imageURL}" alt="${movie.primaryTitle}">` : `<img src="https://media.comicbook.com/files/img/default-movie.png" alt="No image available">`}</div>
                 <div class="movie-title"><h2>${movie.primaryTitle}</h2></div>
                 <div class="movie-release-year"><p>Release Year: ${movie.releaseYear}</p></div>
                 <div class="movie-average-rating"><p>Average Rating: ${movie.averageRating}</p></div>
                 <div class="movie-duration"><p>Duration: ${movie.duration} minutes</p></div>
                 <div class="movie-description"><p>Description: ${movie.description}</p></div>
-                <div class="movie-image">${movie.imageURL ? `<img src="${movie.imageURL}" alt="${movie.primaryTitle}">` : `<img src="https://media.comicbook.com/files/img/default-movie.png" alt="No image available">`}</div>
             `;
 
             // Add the movie div to the results div
