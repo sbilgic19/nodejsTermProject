@@ -240,7 +240,7 @@ function performSearch() {
     let searchBar = document.getElementById('search-bar');
     let searchText = searchBar.value.trim();
     
-    let tvSeriesArray = tvSeriesArray.filter(item => {
+    tvSeriesArray = tvSeriesArray.filter(item => {
         return (item.primaryTitle.indexOf(searchText) !== -1);
     })
 
