@@ -6,7 +6,7 @@ function updateTopRatedMovie(data) {
       labels: labels,
       datasets: [{
         label: "Top Rated Movies",
-        data: data.map((row) => row.rating),
+        data: data.map((row) => row.averageRating),
         backgroundColor: "rgba(75, 192, 192, 0.6)"
       }]
     },
@@ -30,7 +30,7 @@ function updateTopRatedTVSeries(data) {
       labels: labels,
       datasets: [{
         label: "Top Rated TV Series",
-        data: data.map((row) => row.rating),
+        data: data.map((row) => row.averageRating),
         backgroundColor: "rgba(255, 99, 132, 0.6)"
       }]
     },
@@ -92,8 +92,48 @@ function updateMostVotedMovie(data) {
 updateDashboardMostVotedMovies(updateMostVotedMovie);
 
 function youngs(data) {
-  console.log('Youngs data:', data);
+  var table = document.getElementById("youngs");
+
+  // Clear existing table rows
+  while (table.firstChild) {
+    table.removeChild(table.firstChild);
+  }
+
+  // Create table header row
+  var headerRow = document.createElement("tr");
+  var headerCell1 = document.createElement("th");
+  var headerCell2 = document.createElement("th");
+  var headerCell3 = document.createElement("th");
+  var headerCell4 = document.createElement("th");
+  headerCell1.textContent = "FirstName";
+  headerCell2.textContent = "LastName";
+  headerCell3.textContent = "Age";
+  headerCell4.textContent = "Category";
+  headerRow.appendChild(headerCell1);
+  headerRow.appendChild(headerCell2);
+  headerRow.appendChild(headerCell3);
+  headerRow.appendChild(headerCell4);
+  table.appendChild(headerRow);
+
+  // Add data rows
+  data.forEach(function(row) {
+    var dataRow = document.createElement("tr");
+    var dataCell1 = document.createElement("td");
+    var dataCell2 = document.createElement("td");
+    var dataCell3 = document.createElement("td");
+    var dataCell4 = document.createElement("td");
+    dataCell1.textContent = row.firstname;
+    dataCell2.textContent = row.lastname;
+    dataCell3.textContent = row.age;
+    dataCell4.textContent = row.category;
+    dataRow.appendChild(dataCell1);
+    dataRow.appendChild(dataCell2);
+    dataRow.appendChild(dataCell3);
+    dataRow.appendChild(dataCell4);
+    table.appendChild(dataRow);
+  });
 }
+
 updateDashboardYoungs(youngs);
 
 
