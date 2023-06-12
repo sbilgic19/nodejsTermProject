@@ -21,13 +21,6 @@ function toggleFilterMenu(filterId) {
 }
 
 function applyFilter(filterType, filterValue) {
-/*
-    if (is_initial == true) {
-        // initialize the selectedFilters object
-        initialize_selectedFilters();
-    }
-
-*/
 
     if (filterType == 'age') {
         // set all of other radio choices to false and set the selected one to true
@@ -37,7 +30,6 @@ function applyFilter(filterType, filterValue) {
             filter.checked = false;
         });
         document.getElementById(filterValue).checked = true;
-        // set the selected filter to the selected value converting str to int
 
     }
     if (filterType == 'firstname') {
@@ -53,23 +45,11 @@ function applyFilter(filterType, filterValue) {
             filter.checked = false;
         });
         document.getElementById(filterValue).checked = true;
-        // set the selected filter to the selected value converting str to int
     }
 
     // get the value of the search bar
     const searchBar = document.getElementById('search-bar');
     const searchText = searchBar.value;
-    // set the selected filter to the selected value
-    /*if (searchText.trim() !== '') {
-        selectedFilters['age'] = searchText.trim();
-    }
-    else {
-        selectedFilters['age'] = '';
-    }*/
-
-
-    // Send the selectedFilters object to the backend for processing
-    // console.log(selectedFilters); for debug purposes
 }
 function performSearch() {
 
@@ -85,7 +65,6 @@ function performSearch() {
     }
 
     // Make the request to the server with the selected filters
-    console.log(selectedFilters);
     submitSearchRequest(selectedFilters, (data) => {
         // Clear previous results
         document.getElementById('results').innerHTML = '';

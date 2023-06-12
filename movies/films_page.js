@@ -205,5 +205,5 @@ function randomLoad() {
 }
 
 document.addEventListener('DOMContentLoaded', () => {
-    randomLoad();
+    performSearch();
 });
