@@ -1,0 +1,61 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<!-- saved from url=(0049)file:///Users/mac/Desktop/actors/actors_page.html -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Actor Database</title>
+  <link rel="stylesheet" href="actors_page.css">
+  <script src="actors_page.js"></script><style type="text/css">
+    
+  </style>
+</head>
+<body>
+    <div class="navbar">
+        <a href="../movies/films_page.html">Movies</a>
+        <a href="../tvSeries/alltvseries.html">TV Series</a>
+        <a class="active"href="actors_page.html">Actors</a>
+        <a href="../dashboard/dashboard.html">Dashboard</a>
+    </div>
+    <div class="sidebar">
+        <h2>Filter Actors</h2>
+
+        <h3 onclick="toggleFilterMenu('age')">Age</h3>
+        <ul id="age">
+            <li><label><input type="checkbox" name="age" id="0 and 18" onclick="applyFilter('age', '0 and 18')">Under 18</label></li>
+            <li><label><input type="checkbox" name="age" id="18 and 24" onclick="applyFilter('age', '18 and 24')">18-24</label></li>
+            <li><label><input type="checkbox" name="age" id="25 and 34" onclick="applyFilter('age', '25 and 34')">25-34</label></li>
+            <li><label><input type="checkbox" name="age" id="35 and 49" onclick="applyFilter('age', '35 and 49')">35-49</label></li>
+            <li><label><input type="checkbox" name="age" id="50 and 150" onclick="applyFilter('age', '50 and 150')">Over 50</label></li>
+            
+        </ul>
+        <h3 onclick="toggleFilterMenu('genres')">Genre</h3>
+        <ul id="genres">
+            <li><label><input type="checkbox" name="genres" id="Drama"
+                        onclick="applyFilter('genres', 'Drama')">Drama</label></li>
+            <li><label><input type="checkbox" name="genres" id="History"
+                        onclick="applyFilter('genres', 'History')">History</label></li>
+            <li><label><input type="checkbox" name="genres" id="Comedy"
+                        onclick="applyFilter('genres', 'Comedy')">Comedy</label></li>
+            <li><label><input type="checkbox" name="genres" id="Romance"
+                        onclick="applyFilter('genres', 'Romance')">Romance</label></li>
+            <li><label><input type="checkbox" name="genres" id="Family"
+                        onclick="applyFilter('genres', 'Family')">Family</label></li>
+            <li><label><input type="checkbox" name="genres" id="Western"
+                        onclick="applyFilter('genres', 'Western')">Western</label></li>
+            <li><label><input type="checkbox" name="genres" id="Biography"
+                        onclick="applyFilter('genres', 'Biography')">Biography</label></li>
+        </ul>
+        <div class="button-container">
+
+            <button onclick="performSearch()">Search</button>
+            
+        </div>
+
+    </div><div id="main-content">
+
+        <div id="search-container">
+            <input type="text" id="search-bar" placeholder="Search for an actor...">
+            <button background-color=#a6a78d onclick="performSearch()">&#128269</button>
+        </div>
+        <div id="results" class="results"></div>
+    </div></body></html>

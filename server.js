@@ -14,8 +14,8 @@ app.use(bodyParser.json());
 const pool = mysql.createPool({
   host: 'localhost',
   user: 'root',
-  password: 'est2001p',
-  database: 'projectdb'
+  password: 'root',
+  database: 'project'
 });
 
 //test connection
@@ -424,3 +424,130 @@ app.listen(PORT, () => {
   console.log("Server started");
 });
 
+function retrieveActors(firstname, age, genres, callback) {
+
+  if (checkForSqlInjectionRisk(firstname)) {
+    console.log("SQL injection risk detected!");
+    empty_query = `SELECT * FROM crewmember WHERE 1=0`;
+    pool.query(empty_query, (err, results) => {
+      if (err) {
+        console.log(err);
+      } else {
+        callback(results);
+      }
+    });
+  }
+
+
+  var sql = `SELECT * from
+  (
+    SELECT DISTINCT crewmember.*,
+      CASE
+        WHEN deathYear = 0 THEN (YEAR(CURDATE()) - birthYear)
+        ELSE (deathYear - birthYear)
+      END AS age
+    FROM crewmember
+  ) AS subquery`;
+  var genreFilter = ` and subquery.nconst in (select mw.nconst from moviecrew mw where mw.tconst in 
+    (select tconst from moviegenre inner join genre on genre.gconst = moviegenre.gconst where genre in ('${genres}')
+   Union    
+   select tconst from tvseriesgenre inner join genre on genre.gconst = tvseriesgenre.gconst where genre in ('${genres}')))`;
+  if (firstname || age || genres){
+    sql += ' where subquery.birthYear != 0'
+  }
+  if (firstname) {
+    sql += ` AND subquery.firstName = '${firstname}'`;
+  }
+  console.log(age);
+  if (age) {
+    sql += ` and subquery.age between ${age}`
+  }
+  if (genres) {
+    sql += genreFilter;
+  }
+/*
+  for (let duration in durations) {
+    if (durations[duration]) {
+      durationFilter += durationFilter ? " OR " : "";
+      switch (duration) {
+        case "Less than 40 minutes":
+          durationFilter += "movie.duration < 40";
+          break;
+        case "More than 150 minutes":
+          durationFilter += "movie.duration >= 150";
+          break;
+        case "Between 40 and 70 minutes":
+          durationFilter += "(movie.duration >= 40 AND movie.duration < 70)";
+          break;
+        case "Between 70 and 150 minutes":
+          durationFilter += "(movie.duration >= 70 AND movie.duration < 150)";
+          break;
+      }
+    }
+  }
+
+
+  if (durationFilter) {
+    sql += ` AND (${durationFilter})`;
+  }
+
+  if (averageRating) {
+    sql += ` AND movie.averageRating >= ${averageRating}`;
+  }
+
+  for (let year in listReleaseYear) {
+    if (listReleaseYear[year]) {
+      releaseYearFilter += releaseYearFilter ? " OR " : "";
+      switch (year) {
+        case "1920":
+          releaseYearFilter += "(movie.releaseYear < 1920)";
+          break;
+        case "2040":
+          releaseYearFilter += "(movie.releaseYear >= 1920 AND movie.releaseYear < 1940)";
+          break;
+        case "4060":
+          releaseYearFilter += "(movie.releaseYear >= 1940 AND movie.releaseYear < 1960)";
+          break;
+        case "6080":
+          releaseYearFilter += "(movie.releaseYear >= 1960 AND movie.releaseYear < 1980)";
+          break;
+        case "8000":
+          releaseYearFilter += "(movie.releaseYear >= 1980 AND movie.releaseYear < 2000)";
+          break;
+        case "0010":
+          releaseYearFilter += "(movie.releaseYear >= 2000 AND movie.releaseYear < 2010)";
+          break;
+        case "1020":
+          releaseYearFilter += "(movie.releaseYear >= 2010 AND movie.releaseYear < 2020)";
+          break;
+        case "2020":
+          releaseYearFilter += "(movie.releaseYear >= 2020)";
+          break;
+      }
+    }
+  }
+
+  if (releaseYearFilter) {
+    sql += ` AND (${releaseYearFilter})`;
+  }*/
+
+  sql += ` LIMIT 200`;
+
+  console.log(sql);
+
+  pool.query(sql, (err, results) => {
+    if (err) {
+      console.log(err);
+    } else {
+      callback(results);
+    }
+  });
+}
+app.get('/retrieveActors', (req, res) => {
+  console.log(req.query);
+  retrieveActors(
+    req.query.firstname, req.query.age, req.query.genres, (result) => {
+      res.send(result);
+    }
+  );
+});
