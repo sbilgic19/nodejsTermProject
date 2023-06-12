@@ -14,6 +14,8 @@ app.use(bodyParser.json());
 const pool = mysql.createPool({
   host: 'localhost',
   user: 'root',
+  password: 'password',
+  database: 'projectdb'
   password: 'root',
   database: 'project'
 
@@ -21,8 +23,8 @@ const pool = mysql.createPool({
 
 //test connection
 app.get("/getAllTvSeries", (req, res) => {
-  pool.query(`SELECT tvseries.tconst, primaryTitle, isAdult, startYear, endYear, averageRating, description, imageUrl, genre
-   FROM tvseries, tvseriesgenre WHERE tvseries.tconst=tvseriesgenre.tconst;`, (error, results) => {
+  pool.query(`SELECT tvseries.tconst as tconst, primaryTitle, isAdult, startYear, endYear, averageRating, description, imageUrl, genre.genre as genre
+  FROM tvseries, tvseriesgenre, genre WHERE tvseries.tconst=tvseriesgenre.tconst AND tvseriesgenre.gconst=genre.gconst ORDER BY tconst;`, (error, results) => {
     if (error) throw error;
     res.send(results);
   });

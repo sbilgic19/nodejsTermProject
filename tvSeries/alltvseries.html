@@ -15,6 +15,13 @@
 </head>
 
 <body onload="initialFillingTvSeriesToThePage()">
+
+    <div class="navbar">
+        <a href="../movies/films_page.html">Movies</a>
+        <a class="active" href="alltvseries.html">TV Series</a>
+        <a href="../actors.html">Actors</a>
+        <a href="../dashboard/dashboard.html">Dashboard</a>
+    </div>
     <div class="sidebar">
         <h2>Filter Films</h2>
 
@@ -112,7 +119,8 @@
 
         <div id="search-container">
             <input type="text" id="search-bar" placeholder="Search for a film..." />
-            <button onclick="">Search</button>
+            <button background-color=#a6a78d onclick="performSearch()">&#128269</button>
+
         </div>
         <div id="results" class="results">
 
