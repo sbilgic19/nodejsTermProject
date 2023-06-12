@@ -38,7 +38,7 @@ function applyAuthentication(event) {
     const textArea = document.getElementById("readonly-text01");
     submitRequest01((text) => {
         if (text === "Authenticated!") {
-            window.location.href = "welcome.html";
+            window.location.href = "movies/films_page.html";
         }
         else {
             textArea.value = text;
