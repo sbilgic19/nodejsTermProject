@@ -458,78 +458,12 @@ function retrieveActors(firstname, age, genres, callback) {
   if (firstname) {
     sql += ` AND subquery.firstName = '${firstname}'`;
   }
-  console.log(age);
   if (age) {
     sql += ` and subquery.age between ${age}`
   }
   if (genres) {
     sql += genreFilter;
   }
-/*
-  for (let duration in durations) {
-    if (durations[duration]) {
-      durationFilter += durationFilter ? " OR " : "";
-      switch (duration) {
-        case "Less than 40 minutes":
-          durationFilter += "movie.duration < 40";
-          break;
-        case "More than 150 minutes":
-          durationFilter += "movie.duration >= 150";
-          break;
-        case "Between 40 and 70 minutes":
-          durationFilter += "(movie.duration >= 40 AND movie.duration < 70)";
-          break;
-        case "Between 70 and 150 minutes":
-          durationFilter += "(movie.duration >= 70 AND movie.duration < 150)";
-          break;
-      }
-    }
-  }
-
-
-  if (durationFilter) {
-    sql += ` AND (${durationFilter})`;
-  }
-
-  if (averageRating) {
-    sql += ` AND movie.averageRating >= ${averageRating}`;
-  }
-
-  for (let year in listReleaseYear) {
-    if (listReleaseYear[year]) {
-      releaseYearFilter += releaseYearFilter ? " OR " : "";
-      switch (year) {
-        case "1920":
-          releaseYearFilter += "(movie.releaseYear < 1920)";
-          break;
-        case "2040":
-          releaseYearFilter += "(movie.releaseYear >= 1920 AND movie.releaseYear < 1940)";
-          break;
-        case "4060":
-          releaseYearFilter += "(movie.releaseYear >= 1940 AND movie.releaseYear < 1960)";
-          break;
-        case "6080":
-          releaseYearFilter += "(movie.releaseYear >= 1960 AND movie.releaseYear < 1980)";
-          break;
-        case "8000":
-          releaseYearFilter += "(movie.releaseYear >= 1980 AND movie.releaseYear < 2000)";
-          break;
-        case "0010":
-          releaseYearFilter += "(movie.releaseYear >= 2000 AND movie.releaseYear < 2010)";
-          break;
-        case "1020":
-          releaseYearFilter += "(movie.releaseYear >= 2010 AND movie.releaseYear < 2020)";
-          break;
-        case "2020":
-          releaseYearFilter += "(movie.releaseYear >= 2020)";
-          break;
-      }
-    }
-  }
-
-  if (releaseYearFilter) {
-    sql += ` AND (${releaseYearFilter})`;
-  }*/
 
   sql += ` LIMIT 200`;
 
@@ -544,7 +478,6 @@ function retrieveActors(firstname, age, genres, callback) {
   });
 }
 app.get('/retrieveActors', (req, res) => {
-  console.log(req.query);
   retrieveActors(
     req.query.firstname, req.query.age, req.query.genres, (result) => {
       res.send(result);
