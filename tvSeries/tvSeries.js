@@ -106,75 +106,75 @@ function addingFilters(filterCategory, filterName) {
     }else if(filterCategory == 'genre-filter') {
         if(filterName == 'drama') {
             tvSeriesArray = tvSeriesArray.filter(item => {
-                return item.genre.includes('Drama\r');
+                return item.genre.includes('Drama');
             })
         }else if(filterName == 'family') {
             tvSeriesArray = tvSeriesArray.filter(item => {
-                return item.genre.includes('Family\r');
+                return item.genre.includes('Family');
             })
         }else if(filterName == 'western') {
             tvSeriesArray = tvSeriesArray.filter(item => {
-                return item.genre.includes('Western\r');
+                return item.genre.includes('Western');
             })
         }else if(filterName == 'comedy') {
             tvSeriesArray = tvSeriesArray.filter(item => {
-                return item.genre.includes('Comedy\r');
+                return item.genre.includes('Comedy');
             })
         }else if(filterName == 'romance') {
             tvSeriesArray = tvSeriesArray.filter(item => {
-                return item.genre.includes('Romance\r');
+                return item.genre.includes('Romance');
             })
         }else if(filterName == 'adventure') {
             tvSeriesArray = tvSeriesArray.filter(item => {
-                return item.genre.includes('Adventure\r');
+                return item.genre.includes('Adventure');
             })
         }else if(filterName == 'crime') {
             tvSeriesArray = tvSeriesArray.filter(item => {
-                return item.genre.includes('Crime\r');
+                return item.genre.includes('Crime');
             })
         }else if(filterName == 'action') {
             tvSeriesArray = tvSeriesArray.filter(item => {
-                return item.genre.includes('Action\r');
+                return item.genre.includes('Action');
             })
         }else if(filterName == 'horror') {
             tvSeriesArray = tvSeriesArray.filter(item => {
-                return item.genre.includes('Horror\r');
+                return item.genre.includes('Horror');
             })
         }else if(filterName == 'mystery') {
             tvSeriesArray = tvSeriesArray.filter(item => {
-                return item.genre.includes('Mystery\r');
+                return item.genre.includes('Mystery');
             })
         }else if(filterName == 'scifi') {
             tvSeriesArray = tvSeriesArray.filter(item => {
-                return item.genre.includes('Sci-Fi\r');
+                return item.genre.includes('Sci-Fi');
             })
         }else if(filterName == 'animation') {
             tvSeriesArray = tvSeriesArray.filter(item => {
-                return item.genre.includes('Animation\r');
+                return item.genre.includes('Animation');
             })
         }else if(filterName == 'biography') {
             tvSeriesArray = tvSeriesArray.filter(item => {
-                return item.genre.includes('Biography\r');
+                return item.genre.includes('Biography');
             })
         }else if(filterName == 'talk-show') {
             tvSeriesArray = tvSeriesArray.filter(item => {
-                return item.genre.includes('Talk-Show\r');
+                return item.genre.includes('Talk-Show');
             })
         }else if(filterName == 'fantasy') {
             tvSeriesArray = tvSeriesArray.filter(item => {
-                return item.genre.includes('Fantasy\r');
+                return item.genre.includes('Fantasy');
             })
         }else if(filterName == 'history') {
             tvSeriesArray = tvSeriesArray.filter(item => {
-                return item.genre.includes('History\r');
+                return item.genre.includes('History');
             })
         }else if(filterName == 'documentary') {
             tvSeriesArray = tvSeriesArray.filter(item => {
-                return item.genre.includes('Documentary\r');
+                return item.genre.includes('Documentary');
             })
         }else if(filterName == 'short') {
             tvSeriesArray = tvSeriesArray.filter(item => {
-                return item.genre.includes('Short\r');
+                return item.genre.includes('Short');
             })
         }
     }
@@ -193,7 +193,7 @@ function fillingTvSeriesFromArray() {
         tvDiv.classList.add('tvs-item');
 
         tvDiv.innerHTML = `
-            <div class="tvs-image"><img src="../image.jpeg" alt="${tvSeriesArray[i].primaryTitle}"></div>
+            <div class="tvs-image"><img src="${tvSeriesArray[i].imageUrl}" alt="${tvSeriesArray[i].imageUrl}"></div>
             <div class="tvs-title"><h2>${tvSeriesArray[i].primaryTitle}</h2></div>
             <div class="tvs-release-year"><p>Start Year: ${tvSeriesArray[i].startYear}</p></div>
             <div class="tvs-release-year"><p>End Year: ${tvSeriesArray[i].endYear}</p></div>
@@ -202,7 +202,7 @@ function fillingTvSeriesFromArray() {
         for (var k=0; k<tvSeriesArray[i].genre.length; k++) {
             tvDiv.innerHTML += `<div class="tvs-genres"><p>${tvSeriesArray[i].genre[k]}</p></div>`
         }
-        tvDiv.innerHTML += `<div class="tvs-description"><p>Description: This is tv series description</p></div>`
+        tvDiv.innerHTML += `<div class="tvs-description"><p>${tvSeriesArray[i].description}</p></div>`
         resultContainer.appendChild(tvDiv);
     }
     console.log(tvSeriesArray.length);
@@ -220,4 +220,48 @@ function clearAllFilters() {
     checkboxes.forEach(function(checkbox) {
     checkbox.checked = false;
     });
+}
+
+function toggleFilterMenu(filterId) {
+    const filterList = document.getElementById(filterId);
+    const isOpen = filterList.style.display === 'block';
+
+    // Open or close the clicked filter menu
+    filterList.style.display = isOpen ? 'none' : 'block';
+}
+
+function performSearch() {
+
+    var resultContainer = document.getElementById('results');
+    while(resultContainer.firstChild) {
+        resultContainer.removeChild(resultContainer.firstChild);
+    }
+
+    let searchBar = document.getElementById('search-bar');
+    let searchText = searchBar.value.trim();
+    
+    let smallArray = tvSeriesArray.filter(item => {
+        return (item.primaryTitle.indexOf(searchText) !== -1);
+    })
+
+    for(var i=0; i<smallArray.length; i++) {
+        const tvDiv = document.createElement('div');
+        tvDiv.id = `tvs-${i}`;
+        tvDiv.classList.add('tvs-item');
+
+        tvDiv.innerHTML = `
+            <div class="tvs-image"><img src="${smallArray[i].imageUrl}" alt="${smallArray[i].imageUrl}"></div>
+            <div class="tvs-title"><h2>${smallArray[i].primaryTitle}</h2></div>
+            <div class="tvs-release-year"><p>Start Year: ${smallArray[i].startYear}</p></div>
+            <div class="tvs-release-year"><p>End Year: ${smallArray[i].endYear}</p></div>
+            <div class="tvs-average-rating"><p>Average Rating: ${smallArray[i].averageRating}</p></div>
+            `;
+        for (var k=0; k<smallArray[i].genre.length; k++) {
+            tvDiv.innerHTML += `<div class="tvs-genres"><p>${smallArray[i].genre[k]}</p></div>`
+        }
+        tvDiv.innerHTML += `<div class="tvs-description"><p>${smallArray[i].description}</p></div>`
+        resultContainer.appendChild(tvDiv);
+    }
+
+    console.log(searchText);
 }
