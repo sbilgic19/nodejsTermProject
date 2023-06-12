@@ -1,12 +1,59 @@
-function updateMostVotedTVSeries(data){
+function updateTopRatedMovie(data) {
+  var labels = data.map((row) => `${row.genre} - ${row.primaryTitle}`);
+  var movieHistogram = new Chart(document.getElementById("movieHistogram"), {
+    type: "bar",
+    data: {
+      labels: labels,
+      datasets: [{
+        label: "Top Rated Movies",
+        data: data.map((row) => row.rating),
+        backgroundColor: "rgba(75, 192, 192, 0.6)"
+      }]
+    },
+    options: {
+      scales: {
+        y: {
+          beginAtZero: true
+        }
+      }
+    }
+  });
+}
+updateDashboardTopRatedMovies(updateTopRatedMovie);
+
+
+function updateTopRatedTVSeries(data) {
+  var labels = data.map((row) => `${row.genre} - ${row.primaryTitle}`);
+  var topRatedTVSeriesHistogram = new Chart(document.getElementById("tvSeriesHistogram"), {
+    type: "bar",
+    data: {
+      labels: labels,
+      datasets: [{
+        label: "Top Rated TV Series",
+        data: data.map((row) => row.rating),
+        backgroundColor: "rgba(255, 99, 132, 0.6)"
+      }]
+    },
+    options: {
+      scales: {
+        y: {
+          beginAtZero: true
+        }
+      }
+    }
+  });
+}
+updateDashboardTopRatedTVSeries(updateTopRatedTVSeries);
+
+function updateMostVotedTVSeries(data) {
   var labels = data.map((row) => `${row.genre} - ${row.primaryTitle}`);
   var tvSeriesVotesHistogram = new Chart(document.getElementById("tvSeriesVotesHistogram"), {
     type: "bar",
     data: {
-      labels: labels, // Replace with actual genre names
+      labels: labels,
       datasets: [{
-        label: "Most Voted TV Series",
-        data: data.map((row) => row.numVotes), // Replace with actual TV series votes count
+        label: "Top 10 Most Voted TV Series",
+        data: data.map((row) => row.numVotes),
         backgroundColor: "rgba(255, 99, 132, 0.6)"
       }]
     },
@@ -26,10 +73,10 @@ function updateMostVotedMovie(data) {
   var movieVotesHistogram = new Chart(document.getElementById("movieVotesHistogram"), {
     type: "bar",
     data: {
-      labels: labels, // Replace with actual genre names
+      labels: labels, 
       datasets: [{
         label: "Most Voted Movies",
-        data: data.map((row) => row.numVotes),// Replace with actual movie votes count
+        data: data.map((row) => row.numVotes),
         backgroundColor: "rgba(255, 205, 86, 0.6)"
       }]
     },
@@ -40,12 +87,17 @@ function updateMostVotedMovie(data) {
         }
       }
     }
-  });}
+  });
+}
+updateDashboardMostVotedMovies(updateMostVotedMovie);
 
-  updateDashboardMostVotedMovies(updateMostVotedMovie);
-  
-  
-  function updatePieChart(data) {
+function youngs(data) {
+  console.log('Youngs data:', data);
+}
+updateDashboardYoungs(youngs);
+
+
+function updatePieChart(data) {
   var piechart = new Chart(document.getElementById("piechart"), {
     type: "pie",
     data: {
@@ -63,7 +115,4 @@ function updateMostVotedMovie(data) {
     }
   });
 }
-
-// Call the updateDashboard function and pass the updatePieChart function as a callback
 updateDashboardAge(updatePieChart);
-

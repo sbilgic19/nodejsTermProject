@@ -257,6 +257,55 @@ app.post('/registerUser', (req, res) => {
   });
 });
 
+
+const topRatedMovies = `SELECT genre, primaryTitle, averageRating
+FROM (
+  SELECT g.genre, t.primaryTitle, t.averageRating, 
+         ROW_NUMBER() OVER (PARTITION BY g.genre ORDER BY t.averageRating DESC) AS ranking
+  FROM genre g
+  INNER JOIN tvseriesgenre tg ON g.gconst = tg.gconst
+  INNER JOIN tvseries t ON tg.tconst = t.tconst
+  WHERE t.averageRating IS NOT NULL
+) AS ranked_tv_series
+WHERE ranking = 1
+ORDER BY genre, ranking;`
+
+app.get('/topRatedMovies', (req, res) => {
+  pool.query(topRatedMovies, (err, results) => {
+    if (err) {
+      console.error('Error executing SQL query:', err);
+      res.status(500).json({ error: 'Internal server error' });
+      return;
+    }
+    res.send(results);
+  });
+});
+
+
+const topRatedTVSeries = `SELECT genre, primaryTitle, averageRating
+FROM (
+  SELECT g.genre, t.primaryTitle, t.averageRating, 
+         ROW_NUMBER() OVER (PARTITION BY g.genre ORDER BY t.averageRating DESC) AS ranking
+  FROM genre g
+  INNER JOIN tvseriesgenre tg ON g.gconst = tg.gconst
+  INNER JOIN tvseries t ON tg.tconst = t.tconst
+  WHERE t.averageRating IS NOT NULL
+) AS ranked_tv_series
+WHERE ranking = 1
+ORDER BY ranking, genre
+LIMIT 10;`
+
+app.get('/topRatedTVSeries', (req, res) => {
+  pool.query(topRatedTVSeries, (err, results) => {
+    if (err) {
+      console.error('Error executing SQL query:', err);
+      res.status(500).json({ error: 'Internal server error' });
+      return;
+    }
+    res.send(results);
+  });
+});
+
 const mostVotedTVSeries = `SELECT genre, primaryTitle, numVotes
 FROM (
   SELECT g.genre, t.primaryTitle, t.numVotes, 
@@ -267,7 +316,8 @@ FROM (
   WHERE t.numVotes IS NOT NULL
 ) AS ranked_tv_series
 WHERE ranking = 1
-ORDER BY genre;`
+ORDER BY numVotes DESC
+LIMIT 10;`
 
 app.get('/mostVotedTVSeries', (req, res) => {
   pool.query(mostVotedTVSeries, (err, results) => {
@@ -294,6 +344,37 @@ ORDER BY genre;`
 
 app.get('/mostVotedMovies', (req, res) => {
   pool.query(mostVotedMovies, (err, results) => {
+    if (err) {
+      console.error('Error executing SQL query:', err);
+      res.status(500).json({ error: 'Internal server error' });
+      return;
+    }
+    res.send(results);
+  });
+});
+
+const youngs = `SELECT c.firstname, c.lastname, (YEAR(CURRENT_DATE) - c.birthYear) AS age, 'Movie' AS category
+FROM Crewmember c
+INNER JOIN moviecrew mc ON c.nconst = mc.nconst
+WHERE (YEAR(CURRENT_DATE) - c.birthYear) = (
+  SELECT MIN(YEAR(CURRENT_DATE) - c.birthYear)
+  FROM crewmember AS c
+  INNER JOIN moviecrew AS mc ON c.nconst = mc.nconst
+  INNER JOIN movie AS m ON mc.tconst = m.tconst
+)
+UNION
+SELECT c.firstname, c.lastname, (YEAR(CURRENT_DATE) - c.birthYear) AS age, 'TV Series' AS category
+FROM Crewmember c
+INNER JOIN tvseriescrew tc ON c.nconst = tc.nconst
+WHERE (YEAR(CURRENT_DATE) - c.birthYear) = (
+  SELECT MIN(YEAR(CURRENT_DATE) - c.birthYear)
+  FROM crewmember AS c
+  INNER JOIN tvseriescrew AS tc ON c.nconst = tc.nconst
+  INNER JOIN tvseries AS ts ON tc.tconst = ts.tconst
+);`
+
+app.get('/youngs', (req, res) => {
+  pool.query(youngs, (err, results) => {
     if (err) {
       console.error('Error executing SQL query:', err);
       res.status(500).json({ error: 'Internal server error' });

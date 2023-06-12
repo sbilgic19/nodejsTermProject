@@ -54,6 +54,21 @@ function applyRegistration(event) {
     });
 }
 
+updateDashboardTopRatedMovies = async function (callback) {
+    const url = "http://localhost:3000/topRatedMovies";
+
+    const response = await fetch(url);
+    const data = await response.json();
+    callback(data);
+};
+
+updateDashboardTopRatedTVSeries = async function (callback) {
+    const url = "http://localhost:3000/topRatedTVSeries";
+
+    const response = await fetch(url);
+    const data = await response.json();
+    callback(data);
+};
 
 updateDashboardMostVotedTVSeries = async function (callback) {
     const url = "http://localhost:3000/mostVotedTVSeries";
@@ -65,6 +80,14 @@ updateDashboardMostVotedTVSeries = async function (callback) {
 
 updateDashboardMostVotedMovies = async function (callback) {
     const url = "http://localhost:3000/mostVotedMovies";
+
+    const response = await fetch(url);
+    const data = await response.json();
+    callback(data);
+};
+
+updateDashboardYoungs = async function (callback) {
+    const url = "http://localhost:3000/youngs";
 
     const response = await fetch(url);
     const data = await response.json();

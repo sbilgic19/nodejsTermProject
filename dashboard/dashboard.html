@@ -22,7 +22,9 @@
       <a href="../tvSeries/alltvseries.html">TV SERIES</a>
       <a href="../actors/actors.html">ACTORS</a>
     </div>
-    <a href="dashboard.html">DASHBOARD</a>
+    <div class="navbar">
+      <a class="active" href="dashboard.html">DASHBOARD</a>
+    </div>
   </div>
   <div class="container">
     <div class="info-box histogram">
@@ -34,7 +36,7 @@
       <canvas id="tvSeriesHistogram"></canvas>
     </div>
     <div class="info-box histogram">
-      <h2>Most Voted TV Series for Each Genre</h2>
+      <h2>Top 10 Most Voted TV Series for Genres</h2>
       <canvas id="tvSeriesVotesHistogram"></canvas>
     </div>
     <div class="info-box histogram">
@@ -53,48 +55,5 @@
 
   </div>
 </body>
-<script>
-  var movieHistogram = new Chart(document.getElementById("movieHistogram"), {
-    type: "bar",
-    data: {
-      labels: ["Genre 1", "Genre 2", "Genre 3"], // Replace with actual genre names
-      datasets: [{
-        label: "Top 10 Rated Movies",
-        data: [80, 70, 90], // Replace with actual movie ratings
-        backgroundColor: "rgba(75, 192, 192, 0.6)"
-      }]
-    },
-    options: {
-      scales: {
-        y: {
-          beginAtZero: true
-        }
-      }
-    }
-  });
-  var tvSeriesHistogram = new Chart(document.getElementById("tvSeriesHistogram"), {
-    type: "bar",
-    data: {
-      labels: ["Genre 1", "Genre 2", "Genre 3"], // Replace with actual genre names
-      datasets: [{
-        label: "Top 10 Rated TV Series",
-        data: [85, 75, 95], // Replace with actual TV series ratings
-        backgroundColor: "rgba(54, 162, 235, 0.6)"
-      }]
-    },
-    options: {
-      scales: {
-        y: {
-          beginAtZero: true
-        }
-      }
-    }
-  });
-
-  // Histogram - Top 10 Rated TV Series for Each Genre
-  
-
-
-</script>
 
 </html>
