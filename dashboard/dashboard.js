@@ -1,3 +1,26 @@
+function updateMostVotedTVSeries(data){
+  var labels = data.map((row) => `${row.genre} - ${row.primaryTitle}`);
+  var tvSeriesVotesHistogram = new Chart(document.getElementById("tvSeriesVotesHistogram"), {
+    type: "bar",
+    data: {
+      labels: labels, // Replace with actual genre names
+      datasets: [{
+        label: "Most Voted TV Series",
+        data: data.map((row) => row.numVotes), // Replace with actual TV series votes count
+        backgroundColor: "rgba(255, 99, 132, 0.6)"
+      }]
+    },
+    options: {
+      scales: {
+        y: {
+          beginAtZero: true
+        }
+      }
+    }
+  });
+}
+updateDashboardMostVotedTVSeries(updateMostVotedTVSeries);
+
 function updateMostVotedMovie(data) {
   var labels = data.map((row) => `${row.genre} - ${row.primaryTitle}`);
   var movieVotesHistogram = new Chart(document.getElementById("movieVotesHistogram"), {

@@ -55,17 +55,25 @@ function applyRegistration(event) {
 }
 
 
-updateDashboardMostVotedMovies = async function(callback) {
-    const url = "http://localhost:3000/mostVotedMovies";
-  
+updateDashboardMostVotedTVSeries = async function (callback) {
+    const url = "http://localhost:3000/mostVotedTVSeries";
+
     const response = await fetch(url);
     const data = await response.json();
     callback(data);
-  };
+};
 
-updateDashboardAge = async function(callback) {
+updateDashboardMostVotedMovies = async function (callback) {
+    const url = "http://localhost:3000/mostVotedMovies";
+
+    const response = await fetch(url);
+    const data = await response.json();
+    callback(data);
+};
+
+updateDashboardAge = async function (callback) {
     const url = "http://localhost:3000/userAgeDistribution";
-  
+
     const response = await fetch(url);
     const data = await response.json();
     callback(data);

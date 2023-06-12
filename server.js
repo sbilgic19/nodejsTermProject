@@ -257,6 +257,29 @@ app.post('/registerUser', (req, res) => {
   });
 });
 
+const mostVotedTVSeries = `SELECT genre, primaryTitle, numVotes
+FROM (
+  SELECT g.genre, t.primaryTitle, t.numVotes, 
+         ROW_NUMBER() OVER (PARTITION BY g.genre ORDER BY t.numVotes DESC) AS ranking
+  FROM genre g
+  INNER JOIN tvseriesgenre tg ON g.gconst = tg.gconst
+  INNER JOIN tvseries t ON tg.tconst = t.tconst
+  WHERE t.numVotes IS NOT NULL
+) AS ranked_tv_series
+WHERE ranking = 1
+ORDER BY genre;`
+
+app.get('/mostVotedTVSeries', (req, res) => {
+  pool.query(mostVotedTVSeries, (err, results) => {
+    if (err) {
+      console.error('Error executing SQL query:', err);
+      res.status(500).json({ error: 'Internal server error' });
+      return;
+    }
+    res.send(results);
+  });
+});
+
 const mostVotedMovies = `SELECT genre, primaryTitle, numVotes
 FROM (
   SELECT g.genre, m.primaryTitle, m.numVotes, 
