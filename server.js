@@ -268,7 +268,7 @@ FROM (
   WHERE t.averageRating IS NOT NULL
 ) AS ranked_tv_series
 WHERE ranking = 1
-ORDER BY genre, ranking;`
+ORDER BY averageRating DESC, genre;`
 
 app.get('/topRatedMovies', (req, res) => {
   pool.query(topRatedMovies, (err, results) => {
@@ -292,7 +292,7 @@ FROM (
   WHERE t.averageRating IS NOT NULL
 ) AS ranked_tv_series
 WHERE ranking = 1
-ORDER BY ranking, genre
+ORDER BY averageRating DESC, genre
 LIMIT 10;`
 
 app.get('/topRatedTVSeries', (req, res) => {
@@ -340,7 +340,7 @@ FROM (
   WHERE m.numVotes IS NOT NULL
 ) AS ranked_movies
 WHERE ranking = 1
-ORDER BY genre;`
+ORDER BY numVotes DESC;`
 
 app.get('/mostVotedMovies', (req, res) => {
   pool.query(mostVotedMovies, (err, results) => {
