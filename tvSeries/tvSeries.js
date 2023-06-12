@@ -240,26 +240,26 @@ function performSearch() {
     let searchBar = document.getElementById('search-bar');
     let searchText = searchBar.value.trim();
     
-    let smallArray = tvSeriesArray.filter(item => {
+    tvSeriesArray = tvSeriesArray.filter(item => {
         return (item.primaryTitle.indexOf(searchText) !== -1);
     })
 
-    for(var i=0; i<smallArray.length; i++) {
+    for(var i=0; i<tvSeriesArray.length; i++) {
         const tvDiv = document.createElement('div');
         tvDiv.id = `tvs-${i}`;
         tvDiv.classList.add('tvs-item');
 
         tvDiv.innerHTML = `
-            <div class="tvs-image"><img src="${smallArray[i].imageUrl}" alt="${smallArray[i].imageUrl}"></div>
-            <div class="tvs-title"><h2>${smallArray[i].primaryTitle}</h2></div>
-            <div class="tvs-release-year"><p>Start Year: ${smallArray[i].startYear}</p></div>
-            <div class="tvs-release-year"><p>End Year: ${smallArray[i].endYear}</p></div>
-            <div class="tvs-average-rating"><p>Average Rating: ${smallArray[i].averageRating}</p></div>
+            <div class="tvs-image"><img src="${tvSeriesArray[i].imageUrl}" alt="${tvSeriesArray[i].imageUrl}"></div>
+            <div class="tvs-title"><h2>${tvSeriesArray[i].primaryTitle}</h2></div>
+            <div class="tvs-release-year"><p>Start Year: ${tvSeriesArray[i].startYear}</p></div>
+            <div class="tvs-release-year"><p>End Year: ${tvSeriesArray[i].endYear}</p></div>
+            <div class="tvs-average-rating"><p>Average Rating: ${tvSeriesArray[i].averageRating}</p></div>
             `;
-        for (var k=0; k<smallArray[i].genre.length; k++) {
-            tvDiv.innerHTML += `<div class="tvs-genres"><p>${smallArray[i].genre[k]}</p></div>`
+        for (var k=0; k<tvSeriesArray[i].genre.length; k++) {
+            tvDiv.innerHTML += `<div class="tvs-genres"><p>${tvSeriesArray[i].genre[k]}</p></div>`
         }
-        tvDiv.innerHTML += `<div class="tvs-description"><p>${smallArray[i].description}</p></div>`
+        tvDiv.innerHTML += `<div class="tvs-description"><p>${tvSeriesArray[i].description}</p></div>`
         resultContainer.appendChild(tvDiv);
     }
 
