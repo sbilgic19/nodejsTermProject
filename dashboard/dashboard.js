@@ -1,4 +1,28 @@
-function updatePieChart(data) {
+function updateMostVotedMovie(data) {
+  var labels = data.map((row) => `${row.genre} - ${row.primaryTitle}`);
+  var movieVotesHistogram = new Chart(document.getElementById("movieVotesHistogram"), {
+    type: "bar",
+    data: {
+      labels: labels, // Replace with actual genre names
+      datasets: [{
+        label: "Most Voted Movies",
+        data: data.map((row) => row.numVotes),// Replace with actual movie votes count
+        backgroundColor: "rgba(255, 205, 86, 0.6)"
+      }]
+    },
+    options: {
+      scales: {
+        y: {
+          beginAtZero: true
+        }
+      }
+    }
+  });}
+
+  updateDashboardMostVotedMovies(updateMostVotedMovie);
+  
+  
+  function updatePieChart(data) {
   var piechart = new Chart(document.getElementById("piechart"), {
     type: "pie",
     data: {
@@ -18,4 +42,5 @@ function updatePieChart(data) {
 }
 
 // Call the updateDashboard function and pass the updatePieChart function as a callback
-updateDashboard(updatePieChart);
+updateDashboardAge(updatePieChart);
+

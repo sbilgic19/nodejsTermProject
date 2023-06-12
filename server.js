@@ -257,6 +257,29 @@ app.post('/registerUser', (req, res) => {
   });
 });
 
+const mostVotedMovies = `SELECT genre, primaryTitle, numVotes
+FROM (
+  SELECT g.genre, m.primaryTitle, m.numVotes, 
+         ROW_NUMBER() OVER (PARTITION BY g.genre ORDER BY m.numVotes DESC) AS ranking
+  FROM genre g
+  INNER JOIN moviegenre mg ON g.gconst = mg.gconst
+  INNER JOIN Movie m ON mg.tconst = m.tconst
+  WHERE m.numVotes IS NOT NULL
+) AS ranked_movies
+WHERE ranking = 1
+ORDER BY genre;`
+
+app.get('/mostVotedMovies', (req, res) => {
+  pool.query(mostVotedMovies, (err, results) => {
+    if (err) {
+      console.error('Error executing SQL query:', err);
+      res.status(500).json({ error: 'Internal server error' });
+      return;
+    }
+    res.send(results);
+  });
+});
+
 const userAgeDistribution = `SELECT
 age_groups.AgeGroup,
 COUNT(user.age) AS UserCount
