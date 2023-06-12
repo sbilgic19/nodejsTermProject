@@ -14,7 +14,7 @@ app.use(bodyParser.json());
 const pool = mysql.createPool({
   host: 'localhost',
   user: 'root',
-  password: 'XXXXX',
+  password: 'est2001p',
   database: 'projectdb'
 });
 
@@ -259,15 +259,15 @@ app.post('/registerUser', (req, res) => {
 
 const topRatedMovies = `SELECT genre, primaryTitle, averageRating
 FROM (
-  SELECT g.genre, t.primaryTitle, t.averageRating, 
-         ROW_NUMBER() OVER (PARTITION BY g.genre ORDER BY t.averageRating DESC) AS ranking
+  SELECT g.genre, m.primaryTitle, m.averageRating, 
+         ROW_NUMBER() OVER (PARTITION BY g.genre ORDER BY m.averageRating DESC) AS ranking
   FROM genre g
-  INNER JOIN tvseriesgenre tg ON g.gconst = tg.gconst
-  INNER JOIN tvseries t ON tg.tconst = t.tconst
-  WHERE t.averageRating IS NOT NULL
-) AS ranked_tv_series
+  INNER JOIN moviegenre mg ON g.gconst = mg.gconst
+  INNER JOIN Movie m ON mg.tconst = m.tconst
+  WHERE m.averageRating IS NOT NULL
+) AS ranked_movies
 WHERE ranking = 1
-ORDER BY averageRating DESC, genre;`
+ORDER BY genre, ranking;`
 
 app.get('/topRatedMovies', (req, res) => {
   pool.query(topRatedMovies, (err, results) => {
